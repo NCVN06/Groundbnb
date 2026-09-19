@@ -15,6 +15,8 @@ Integrantes:
 Portavoz:
 - Nicolás Carlos Vladila Nastasoiu
 
+
+
 ## Objetivo
 
 Desarrollar una plataforma para la gestión de alquiler de viviendas siguiendo un proceso iterativo e incremental de ingeniería del software.
@@ -23,3 +25,26 @@ Desarrollar una plataforma para la gestión de alquiler de viviendas siguiendo u
 
 Sprint 0 - Preparación y planificación.
 
+## Construcción y ejecución
+
+Requisitos:
+- Java 17
+
+Comandos:
+
+.\mvnw.cmd clean
+.\mvnw.cmd test
+.\mvnw.cmd package
+.\mvnw.cmd verify
+.\mvnw.cmd spring-boot:run
+
+URL local:
+
+http://localhost:8080
+
+## Dependencias
+
+•spring-boot-starter-webmvc → aplicación web con Spring MVC: controladores y peticiones HTTP.
+•spring-boot-starter-thymeleaf → vistas HTML mediante plantillas Thymeleaf.
+•spring-boot-starter-webmvc-test → soporte para pruebas de Spring MVC.
+•spring-boot-starter-thymeleaf-test → soporte para pruebas de Thymeleaf.
