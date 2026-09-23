@@ -50,9 +50,9 @@ http://localhost:8080
 
 ## Funcionalidad candidata para el hito 1
 
-**Registro y Autenticación con Verificación de Identidad**
+**Dar de alta propiedades**
 
-Seleccionamos esta funcionalidad para tener una primera interfaz usable y dejar preparada la base de datos.
+Seleccionamos esta funcionalidad para tener una primera interfaz usable y una funcionalidad básica.
 
 
 
