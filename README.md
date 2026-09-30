@@ -54,7 +54,13 @@ http://localhost:8080
 
 Seleccionamos esta funcionalidad para tener una primera interfaz usable y una funcionalidad básica.
 
+## Documentación del proyecto
 
+La documentación viva del proyecto se mantiene en:
+
+- `docs/technical/`: base técnica y dependencias.
+- `docs/diagrams/`: diagramas y modelos.
+- `docs/decisions/`: decisiones relevantes.
 
 
 
