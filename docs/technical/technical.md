@@ -1,0 +1,1 @@
+base técnica y dependencias. 
