@@ -21,8 +21,34 @@ Desarrollar una plataforma para la gestión de alquiler de viviendas siguiendo u
 
 ## Estado
 
-Sprint 0 - Preparación y planificación.
-Sprint 1 - Maven y Spring Boot
+### Sprint 0
+09/09/2026 - 15/09/2026
+
+- Construcción de la empresa.    
+- Preparar entorno de trabajo. 
+- Preparación y planificación del backlog.
+
+### Sprint 1
+16/09/2026 - 22/09/2026
+
+- Implementar Maven y Spring Boot al proyecto
+
+### Sprint 2
+23/09/2026 - 30/09/2026
+
+- Documentación y pull requests.
+- Añadir funcionalidades al backlog.
+
+### Sprint 3
+01/10/2026 - 06/10/2026
+
+- Impelementar JPA y H2DB en el proyecto
+- Terminar el backlog orientativo
+
+### Sprint 4
+07/10/2026 - 13/10/2026
+
+Por concretar.
 
 ## Construcción y ejecución
 
