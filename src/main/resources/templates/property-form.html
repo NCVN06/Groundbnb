@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Publicar propiedad</title>
+    </head>
+    <body>
+        <h1>Publicar una propiedad</h1>
+        <p th:if="${created}" role="status">La propiedad se ha registrado correctamente.</p>
+
+        <form th:action="@{/properties}" th:object="${propertyForm}" method="post">
+            <div>
+                <label for="title">Nombre</label>
+                <input id="title" type="text" th:field="*{title}" required>
+                <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+            </div>
+            <div>
+                <label for="description">Descripción</label>
+                <textarea id="description" th:field="*{description}" required></textarea>
+                <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+            </div>
+            <div>
+                <label for="address">Dirección</label>
+                <input id="address" type="text" th:field="*{address}" required>
+                <span th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span>
+            </div>
+            <div>
+                <label for="city">Ciudad</label>
+                <input id="city" type="text" th:field="*{city}" required>
+                <span th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></span>
+            </div>
+            <div>
+                <label for="pricePerNight">Precio por noche</label>
+                <input id="pricePerNight" type="number" min="0.01" step="0.01"
+                       th:field="*{pricePerNight}" required>
+                <span th:if="${#fields.hasErrors('pricePerNight')}" th:errors="*{pricePerNight}"></span>
+            </div>
+            <div>
+                <label for="amenities">Comodidades</label>
+                <textarea id="amenities" th:field="*{amenities}" required></textarea>
+                <span th:if="${#fields.hasErrors('amenities')}" th:errors="*{amenities}"></span>
+            </div>
+            <div>
+                <label for="type">Tipo de alojamiento</label>
+                <select id="type" th:field="*{type}" required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="HOME">Vivienda completa</option>
+                    <option value="ROOM">Habitación</option>
+                </select>
+                <span th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></span>
+            </div>
+            <fieldset>
+                <legend>¿Permitir reservas directas?</legend>
+                <label>
+                    <input type="radio" th:field="*{instantBooking}" value="true" required>
+                    Sí
+                </label>
+                <label>
+                    <input type="radio" th:field="*{instantBooking}" value="false" required>
+                    No
+                </label>
+                <span th:if="${#fields.hasErrors('instantBooking')}" th:errors="*{instantBooking}"></span>
+            </fieldset>
+            <button type="submit">Registrar propiedad</button>
+        </form>
+    </body>
+</html>
