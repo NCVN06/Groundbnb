@@ -56,32 +56,33 @@ Permitir a los usuarios registrar nuevas propiedades en la plataforma, asegurand
 
 ### 3. Plan humano previo
 
-> Completar antes de pedir al agente que proponga su solución.
+> Configurar la IA agentica para que tenga el contexto completo del proyecto y a su vez proponer la implementacion cuya validación se va a gestionar por el equipo 
 
 #### Plan inicial del equipo
 
-1.  
-2.  
-3.  
-4.  
+1.  Modelar la entidad: Crear la clase Property en la capa de dominio con los atributos solicitados (nombre, descripción, dirección, precio, comodidades, tipo [Enum: VIVIENDA, HABITACION], y reservaDirecta) aplicando validaciones de Spring (@NotNull, @NotBlank).
+2.  apa de persistencia: Crear la interfaz PropertyRepository extendiendo de JpaRepository para gestionar el acceso a la base de datos sin escribir SQL manual.
+3.  Capa de negocio (Servicio): Implementar PropertyService con un método para registrar la propiedad, encargándose de asociar el objeto Property con el usuario con rol de "Propietario" que está realizando la petición
+
 
 #### Archivos o capas que se prevé modificar
 
-- 
-- 
-- 
+- Capa de Dominio: rental_platform/domain/Property.java (Nueva entidad).
+- Capa de Persistencia: rental_platform/repository/PropertyRepository.java (Nueva interfaz).
+- Capa de Persistencia: rental_platform/repository/PropertyRepository.java (Nueva interfaz).
+-Capa de Presentación: rental_platform/web/PropertyController.java (Nuevo controlador).
 
 #### Dependencias, supuestos o dudas
 
-- 
-- 
+- La configuracion de base de datos H2, esta implementada 
+- el servidor web por medio de spring boot esta implementado 
 - 
 
 #### Cómo se comprobará que funciona
 
-- 
-- 
-- 
+- Prueba de camino feliz (Happy path): Se enviará un formulario  con todos los campos obligatorios rellenos correctamente. Se verificará que el servidor responde con éxito  y que al consultar la base de datos (SELECT * FROM property) aparece el nuevo registro asociado al propietario.
+- Prueba de validación (Camino alternativo): Se intentará enviar el formulario dejando campos clave vacíos (por ejemplo, sin poner precio o dirección). Se verificará que el controlador intercepta el error, no guarda nada en la base de datos, y devuelve los mensajes de error correspondientes al cliente.
+
 
 ---
 
