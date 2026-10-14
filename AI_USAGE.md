@@ -21,14 +21,14 @@ Este documento recoge los usos relevantes de inteligncia artificial realizados d
 
 ### 1. Identificación
 
-- **Equipo / empresa:**  
-- **Integrantes:**  
-- **Repositorio:**  
-- **Issue relacionada:**  
-- **Historia de usuario:**  
-- **Rama de trabajo:**  
-- **Responsable principal del Hito 1:**  
-- **Participantes y contribución de cada uno:**  
+- **Equipo / empresa: Groundbnb**  
+- **Integrantes: Ángel Leonardo Curiel Cañizalez, Pablo Dalda Sánchez, Pedro Jesús de los Reyes Cabañas, Nuria Sanhonorato Ruiz y Nicolás Carlos Vladila Nastasoiu.**  
+- **Repositorio: https://github.com/NCVN06/Groundbnb**  
+- **Issue relacionada: #13**  
+- **Historia de usuario: #13**  
+- **Rama de trabajo: feat/02-Alta-propiedades**  
+- **Responsable principal del Hito 1: Nicolás Carlos Vladila Nastasoiu**  
+-**Participantes y contribución de cada uno: Ángel Leonardo Curiel Cañizalez: Documentacion, Pablo Dalda Sánchez: configuracion de la IA agentica en la rama.  Pedro Jesús de los Reyes Cabañas, Nuria Sanhonorato Ruiz : Nicolás Carlos Vladila Nastasoiu**
 
 ---
 
@@ -36,22 +36,21 @@ Este documento recoge los usos relevantes de inteligncia artificial realizados d
 
 #### Objetivo
 
-<!-- Explicar en 3-5 líneas qué funcionalidad se pretende implementar. -->
-
+Permitir a los usuarios registrar nuevas propiedades en la plataforma, asegurando que se capturen todos los datos obligatorios y se persistan correctamente en la base de datos para su posterior alquiler.
 
 
 #### Criterios de aceptación relevantes
 
-- [ ]  
-- [ ]  
-- [ ]  
-- [ ]  
+- [ Los campos obligatorios (nombre, descripción, dirección, precio por noche) deben estar completos para poder guardar.]  
+- [ El sistema permite seleccionar y diferenciar el tipo de propiedad (vivienda completa o habitación]  
+- [ El sistema permite marcar si la propiedad acepta reservas directas o si requiere confirmación manual]  
+- [ La propiedad se persiste correctamente en la base de datos y queda asociada al propietario que la ha creado]  
 
 #### Fuera de alcance
 
-- 
-- 
-- 
+- Subida de imágenes o contenido multimedia de la propiedad (se deja para una iteración/issue posterior)
+- Validación de la dirección mediante una API externa (ej. Google Maps) para evitar direcciones falsas (se asume validación básica de texto por ahora)
+- Gestión del calendario de disponibilidad del inmueble (solo se abarca el registro estático de la propiedad).
 
 ---
 
