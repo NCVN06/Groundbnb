@@ -6,11 +6,11 @@ Esta versión inicial se prepara antes de la entrega intermedia con carácter fo
 
 ## 1. Identificación
 
-- **Equipo / empresa:** 
-- **Fecha:** 
-- **Versión del documento:** 0.1
-- **Responsable de mantener el plan:** 
-- **Sprint actual del equipo:** 
+- **Equipo / empresa: Groundbnb** 
+- **Fecha:14/10/2026** 
+- **Versión del documento:** 0.2
+- **Responsable de mantener el plan: Nuria** 
+- **Sprint actual del equipo:** Sprint 3 
 
 ---
 
