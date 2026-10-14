@@ -76,7 +76,7 @@ Permitir a los usuarios registrar nuevas propiedades en la plataforma, asegurand
 
 - La configuracion de base de datos H2, esta implementada 
 - el servidor web por medio de spring boot esta implementado 
-- 
+
 
 #### Cómo se comprobará que funciona
 
@@ -98,43 +98,48 @@ Permitir a los usuarios registrar nuevas propiedades en la plataforma, asegurand
 - [ ] Estructura Maven / Spring Boot
 - [ ] Otro:  
 
-**Herramienta / agente:**  
-**Entorno:**  
-**Modelo, si procede:**  
+
 
 #### Prompt principal
 
-```text
-[Incluir el prompt utilizado o una versión resumida fiel.]
-```
+Analiza este repositorio.
+1. Lee AGENTS.md.
+2. Identifica tecnología
+y estructura.
+3. Resume las reglas que
+debes respetar.
+4. Indica la rama actual.
+No modifiques archivos.
+No ejecutes cambios.
 
 #### Plan propuesto por el agente
 
-1.  
-2.  
-3.  
-4.  
+Representar tipo de anuncio (vivienda/habitación), descripción, dirección, precio por noche, comodidades y modalidad de reserva en Property, con restricciones apropiadas y persistencia JPA.
+Implementar repositorio y servicio para validar y guardar el anuncio, evitando lógica de negocio en el controlador.
+Crear el flujo web para capturar y enviar el formulario; exigir los campos obligatorios tanto en servidor como en la interfaz y mostrar errores de validación/resultado.
+Añadir pruebas para validación, persistencia y flujo web; ejecutar mvnw.cmd test y mvnw.cmd package.
 
 **Archivos o componentes propuestos:**
 
-- 
-- 
-- 
+- Dominio/persistencia: Property.java, PropertyRepository.java y application.properties.
 
----
+- Caso de uso/web: PropertyService.java, PropertyController.java, home.html y posiblemente una plantilla Thymeleaf de formulario/confirmación.
+
+- Verificación y dependencias: RentalPlatformApplicationTests.java y pom.xml; añadiría pruebas dirigidas por capa según las convenciones existentes.
+
+- Documentación técnica si se incorpora una decisión de modelo: technical.md.
+
 
 ### 5. Revisión humana del plan
 
-| Propuesta del agente | Decisión | Justificación |
-|---|---|---|
-|  | Aceptada / Modificada / Rechazada |  |
-|  | Aceptada / Modificada / Rechazada |  |
-|  | Aceptada / Modificada / Rechazada |  |
+En el archivo propertiesform cambiado en el html, hemos simplificado la interacción persona ordenador mejorando el affordance y usabilidad
+
 
 #### Cambios solicitados antes de implementar
 
-- 
-- 
+- mantener el campo de City porque es necesario y el agente queria eliminarlo.
+- confirmar el uso que es necesario del BigDecimal
+
 
 #### Plan final aprobado
 
