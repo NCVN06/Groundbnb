@@ -91,12 +91,15 @@ Permitir a los usuarios registrar nuevas propiedades en la plataforma, asegurand
 #### Contexto proporcionado
 
 - [ ] Repositorio abierto
-- [ ] Rama correcta
+- [ feature/02-issue-13-alta-propiedades] Rama correcta
 - [ ] `AGENTS.md` y skills aplicables
 - [ ] Issue y criterios de aceptación
 - [ ] Código existente relevante
-- [ ] Estructura Maven / Spring Boot
-- [ ] Otro:  
+- [ ] Estructura Maven / Spring Boot (Archivos: Property.java, PropertyRepository.java, PropertyService.java, PropertyController.java)
+
+Herramienta / agente: GitHub Copilot / ChatGPT
+Entorno: VS Code 
+Modelo, si procede: GPT-4o
 
 
 
@@ -111,6 +114,10 @@ debes respetar.
 4. Indica la rama actual.
 No modifiques archivos.
 No ejecutes cambios.
+
+Actúa como desarrollador Java experto en Spring Boot. Necesitamos implementar la historia de usuario "Alta de propiedades" (Issue #13). 
+Crea la estructura para registrar una propiedad. Los campos obligatorios son: nombre, descripción, dirección, precio por noche, comodidades, tipo de propiedad (vivienda o habitación) y un booleano para reserva directa.
+Genera el código para la entidad (Property.java), el repositorio JPA (PropertyRepository.java), el servicio con la lógica de guardado (PropertyService.java) y el controlador REST/MVC (PropertyController.java).
 
 #### Plan propuesto por el agente
 
@@ -133,6 +140,9 @@ Añadir pruebas para validación, persistencia y flujo web; ejecutar mvnw.cmd te
 ### 5. Revisión humana del plan
 
 En el archivo propertiesform cambiado en el html, hemos simplificado la interacción persona ordenador mejorando el affordance y usabilidad
+
+el agente queria quitar el campo City, necesario para una buena exactitud del formulario
+
 
 
 #### Cambios solicitados antes de implementar
@@ -162,14 +172,14 @@ En el archivo propertiesform cambiado en el html, hemos simplificado la interacc
 
 #### Revisión humana
 
-- [ ] Los cambios pertenecen a la issue.
-- [ ] No se ha ampliado innecesariamente el alcance.
-- [ ] La separación por capas se mantiene.
-- [ ] La lógica de negocio no se concentra en el controlador.
-- [ ] Las entidades y relaciones JPA se pueden justificar, si procede.
-- [ ] Las validaciones y errores son controlados.
-- [ ] No se han añadido archivos temporales o ajenos.
-- [ ] El equipo comprende los cambios realizados.
+- [X]Los cambios pertenecen a la issue.
+- [X]No se ha ampliado innecesariamente el alcance.
+- [X]La separación por capas se mantiene.
+- [X]La lógica de negocio no se concentra en el controlador.
+- [X]Las entidades y relaciones JPA se pueden justificar, si procede.
+- [X]Las validaciones y errores son controlados.
+- [X]No se han añadido archivos temporales o ajenos.
+- [X]El equipo comprende los cambios realizados.
 
 #### Problemas o carencias detectados
 
@@ -188,11 +198,11 @@ En el archivo propertiesform cambiado en el html, hemos simplificado la interacc
 .\mvnw.cmd verify
 ```
 
-- [ ] `BUILD SUCCESS`
+- [X] `BUILD SUCCESS`
 - [ ] Fallo
 
 **Observaciones:**  
-
+Compilación limpia, las pruebas de contexto de Spring arrancan correctamente.
 
 
 #### Ejecución de la funcionalidad
@@ -201,7 +211,7 @@ En el archivo propertiesform cambiado en el html, hemos simplificado la interacc
 .\mvnw.cmd spring-boot:run
 ```
 
-- [ ] La aplicación arranca correctamente.
+- [X] La aplicación arranca correctamente.
 - [ ] La funcionalidad puede ejecutarse desde la interfaz o endpoint previsto.
 
 #### Comprobación funcional
@@ -209,8 +219,9 @@ En el archivo propertiesform cambiado en el html, hemos simplificado la interacc
 **Caso válido**
 
 - **Entrada / acción:**  
-- **Resultado esperado:**  
-- **Resultado obtenido:**  
+- **Resultado esperado: Mensaje de exito en la alta de la propiedad y la informacion en la fila de base de datos**  
+
+- **Resultado obtenido: Mensaje de exito en la alta de la propiedad y la informacion en la fila de base de datos**  
 
 **Caso inválido o error controlado**
 
@@ -220,8 +231,8 @@ En el archivo propertiesform cambiado en el html, hemos simplificado la interacc
 
 #### Persistencia, si procede
 
-- **Qué se comprobó:**  
-- **Resultado:**  
+- **Qué se comprobó: Qué se comprobó: Se consultó la consola H2 / Base de datos (SELECT * FROM property**  
+- **Resultado: La fila se insertó correctamente con todos los valores mapeados**  
 
 #### Revisión final del cambio
 
