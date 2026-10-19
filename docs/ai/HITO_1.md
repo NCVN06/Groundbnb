@@ -57,7 +57,6 @@ Permitir a los usuarios registrar nuevas propiedades en la plataforma, asegurand
 
 - Capa de Dominio: rental_platform/domain/Property.java (Nueva entidad).
 - Capa de Persistencia: rental_platform/repository/PropertyRepository.java (Nueva interfaz).
-- Capa de Persistencia: rental_platform/repository/PropertyRepository.java (Nueva interfaz).
 -Capa de Presentación: rental_platform/web/PropertyController.java (Nuevo controlador).
 
 #### Dependencias, supuestos o dudas
@@ -79,7 +78,7 @@ Permitir a los usuarios registrar nuevas propiedades en la plataforma, asegurand
 #### Contexto proporcionado
 
 - [X] Repositorio abierto
-- [X] Rama correcta: feature/02-issue-13-alta-propiedade
+- [X] Rama correcta: feature/02-Alta-propiedades
 - [X] `AGENTS.md` y skills aplicables
 - [X] Issue y criterios de aceptación
 - [X] Código existente relevante
@@ -114,6 +113,8 @@ Implementar repositorio y servicio para validar y guardar el anuncio, evitando l
 Crear el flujo web para capturar y enviar el formulario; exigir los campos obligatorios tanto en servidor como en la interfaz y mostrar errores de validación/resultado.
 Añadir pruebas para validación, persistencia y flujo web; ejecutar mvnw.cmd test y mvnw.cmd package.
 
+Esta propuesta de pruebas automatizadas no se incluyó en el plan aprobado por el equipo: se decidió crear `PropertyRegistrationTests.java` como archivo vacío y no implementar casos de prueba porque no forman parte del alcance actual.
+
 **Archivos o componentes propuestos:**
 
 - Dominio/persistencia: Property.java, PropertyRepository.java
@@ -136,7 +137,7 @@ Añadir pruebas para validación, persistencia y flujo web; ejecutar mvnw.cmd te
 
 1.  PropertyType.java Property.java (modifca constructor y termina la implementacion) 
 2.  Resources/ templates property-form.html Crear e implementar
-3.  PropertyRegistrationTests.java Crear pero no implementar
+3.  Crear `PropertyRegistrationTests.java` vacío, sin implementar pruebas automatizadas, porque no entran en el alcance actual
 4.  PropertyRepository.java Crear e implementar
 5. PropertyService.java Crear e implementar 
 6. PropertyForm  y PropertyController Crear e implementar
@@ -152,7 +153,7 @@ Añadir pruebas para validación, persistencia y flujo web; ejecutar mvnw.cmd te
 |PropertyType.java               |  Crear e implementar                    |        |
 |Property.java                   |  Añadir columnas para la base de datos  |        |
 | property-form.html             |  Crear e implementar                    |        |
-|PropertyRegistrationTests.java  |  Crear                                  | No lo implementamos porque no entra en nuestro alcance actual  |
+|PropertyRegistrationTests.java  |  Crear el archivo vacío, sin implementar casos de prueba | Decisión del equipo: las pruebas automatizadas no entran en el alcance actual |
 | Home.htlm                      | Crear e implementar                     |
 | PropertyService.java           |  Crear e implementar                    |
 | PropertyForm                   |  Crear e implementar                    |                            
@@ -209,6 +210,8 @@ Compilación limpia, las pruebas de contexto de Spring arrancan correctamente.
 
 
 #### Comprobación funcional
+
+Las comprobaciones funcionales siguientes se realizaron manualmente. `PropertyRegistrationTests.java` permanece vacío por decisión del equipo, por lo que no contiene pruebas automatizadas del registro; su implementación queda fuera del alcance actual.
 
 **Caso válido**
 
@@ -302,7 +305,7 @@ git diff
 - [X] Persistencia comprobada, si procede.
 - [X] Diff revisado.
 - [X] Evidencias completadas.
-- [ ] PR revisable: falta añadir el enlace de la PR correspondiente a esta rama.
+- [X] PR revisable: https://github.com/NCVN06/Groundbnb/pull/31
 - [X] Documentación actualizada cuando corresponde.
 
 #### Resumen breve para defensa
