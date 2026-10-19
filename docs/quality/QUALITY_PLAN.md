@@ -6,7 +6,7 @@ Esta versión inicial se prepara antes de la entrega intermedia con carácter fo
 
 ## 1. Identificación
 
-- **Equipo / empresa: Groundbnb** 
+- **Equipo / empresa: Groundbnb**  
 - **Fecha:14/10/2026** 
 - **Versión del documento:** 0.2
 - **Responsable de mantener el plan: Nuria** 
@@ -160,32 +160,32 @@ Ejemplos posibles:
 
 Antes de considerar una issue lista para integrarse, se comprobará:
 
-- [ ] tiene criterios de aceptación;
-- [ ] el cambio es trazable y está correctamente aislado cuando corresponde;
-- [ ] el código compila;
-- [ ] el proyecto ejecuta el build acordado;
-- [ ] existe una Pull Request cuando el cambio vaya a integrarse en `main`;
-- [ ] otra persona ha revisado el cambio;
-- [ ] el equipo comprende los cambios realizados;
-- [ ] la documentación afectada está actualizada;
-- [ ] el modelo está actualizado cuando corresponde;
-- [ ] el uso relevante de IA está declarado;
-- [ ] no se han incluido credenciales o datos sensibles.
+- [X] tiene criterios de aceptación;
+- [X] el cambio es trazable y está correctamente aislado cuando corresponde;
+- [X] el código compila;
+- [X] el proyecto ejecuta el build acordado;
+- [X] existe una Pull Request cuando el cambio vaya a integrarse en `main`;
+- [X] otra persona ha revisado el cambio;
+- [X] el equipo comprende los cambios realizados;
+- [X] la documentación afectada está actualizada;
+- [X] el modelo está actualizado cuando corresponde;
+- [X] el uso relevante de IA está declarado;
+- [X] no se han incluido credenciales o datos sensibles.
 
 ---
 
 ## 7. Acciones iniciales antes de la entrega intermedia
 
-| Acción | Responsable | Fecha límite | Estado |
-|---|---|---|---|
-| Comprobar `main` desde limpio |  |  | Pendiente |
-| Cerrar e integrar el Hito 1 |  |  | Pendiente |
-| Completar `AI-01-hito-funcional.md` |  |  | Pendiente |
-| Revisar README y documentación |  |  | Pendiente |
-| Actualizar modelo/diagramas |  |  | Pendiente |
-| Revisar problemas pendientes y deuda técnica |  |  | Pendiente |
-| Identificar versión intermedia |  |  | Pendiente |
-| Preparar demo |  |  | Pendiente |
+| Acción                                       | Responsable | Fecha límite | Estado                  |
+|---                                           |             |              |                         |
+| Comprobar `main` desde limpio                |  Nicolás    |20/10/2026    | Hecho                   |
+| Cerrar e integrar el Hito 1                  |  Nicolás    |20/10/2026    | Pendiente               |
+| Completar `AI-01-hito-funcional.md`          |   Ángel     |20/10/2026    | Pendiente               |
+| Revisar README y documentación               |   Nuria     |20/10/2026    | Pendiente               |
+| Actualizar modelo/diagramas                  |Aún no aplica|    -         | Pendiente               |
+| Revisar problemas pendientes y deuda técnica |   Nicolás   |20/10/2026    | Pendiente               |
+| Identificar versión intermedia               |    Pablo    |20/10/2026    | Pendiente               |
+| Preparar demo                                |   Nicolás   |20/10/2026    | Pendiente               |
 
 ---
 
@@ -224,11 +224,12 @@ Este documento debe actualizarse cuando:
 
 ### Próxima revisión prevista
 
-- **Fecha / sesión:** 
-- **Responsable:** 
+- **Fecha / sesión:** 04/11/2026
+- **Responsable:** Nuria
 
 ---
 
 ## 10. Resumen
 
 > En 3–5 líneas, indicar cuáles son ahora mismo los principales objetivos de calidad del equipo, qué problema o limitación considera más importante y cuál es la acción prioritaria antes de la entrega intermedia.
+    Como objetivos principales de calidad, antes de la entrega intermedia, el proyecto debe ofrecer un registro de propiedades correcto y comprensible, validar los datos obligatorios, guardar la información de forma consistente y mantener la separación entre presentación, servicio y persistencia. También que los requisitos esten alineados con las evidencias de verificación.
