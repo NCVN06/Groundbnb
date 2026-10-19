@@ -42,3 +42,16 @@ After implementation:
 - Do not remove tests to make the build pass.
 - Do not integrate or aprove changes.
 
+### Skill: Review persistence implementation
+
+**What to review:**
+- Entities, repositories, services, and controllers.
+- Business logic outside the controller.
+- IDs, relationships, and JPA cardinalities.
+- H2/JPA dependencies and configuration.
+
+**Agent limitations:**
+- Do not invent requirements or relationships.
+- Do not expand the scope of the issue.
+- Do not approve or integrate changes.
+- The team executes the verification and makes the final decision.
