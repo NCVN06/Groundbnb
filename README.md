@@ -77,6 +77,7 @@ http://localhost:8080
 - spring-boot-starter-data-jpa -> infraestructura necesaria para trabajar con entidades
 - h2 -> motor de base de datos embebido
 - spring-boot-h2console -> consola web de H2
+- spring-boot-starter-validation -> Soporte para la validación de datos basada en especificaciones de Java Bean Validation (Jakarta Validation).
 
 ## Funcionalidad candidata para el hito 1
 
