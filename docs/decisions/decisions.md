@@ -1,5 +1,13 @@
 # Decisiones realizadas
 
+## Arquitectura utilizada
+
+**¿Por qué usamos H2?**
+Permite guardar datos para utilizarlos en consultas posteriores, verificando el estado de los datos y sirviendo como una base de datos relacional para reservas reales.
+
+**¿Por qué usamos JPA?**
+Permite manejar datos relacionales en aplicaciones Java con la intencion de no perder las ventajas de la orientacion a objetos al interactuar con una base de datos.
+
 ## Funcionalidad candidata para el hito 1
 
 Alta de propiedades.
