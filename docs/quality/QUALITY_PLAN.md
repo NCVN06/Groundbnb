@@ -7,10 +7,10 @@ Esta versión inicial se prepara antes de la entrega intermedia con carácter fo
 ## 1. Identificación
 
 - **Equipo / empresa: Groundbnb**  
-- **Fecha:14/10/2026** 
-- **Versión del documento:** 0.3
+- **Fecha:20/10/2026** 
+- **Versión del documento:** 0.4
 - **Responsable de mantener el plan: Nuria** 
-- **Sprint actual del equipo:** Sprint 3 
+- **Sprint actual del equipo:** Sprint 4 
 
 ---
 
@@ -123,7 +123,7 @@ Criterios actuales:
 
 | Aspecto pendiente | Tipo | Acción prevista | Responsable | Estado |
 |---|---|---|---|---|
-| Persistencia | Funcional | Implementar script que simule persistencia | Nicolás | Pendiente |
+| Persistencia | Funcional | Implementar script que simule persistencia | Nicolás | Hecho |
 
 > El equipo debe adaptar esta tabla a los problemas, limitaciones o dependencias reales de su proyecto. No es necesario conservar ejemplos que no apliquen.
 
@@ -171,16 +171,16 @@ Antes de considerar una issue lista para integrarse, se comprobará:
 
 ## 7. Acciones iniciales antes de la entrega intermedia
 
-| Acción | Responsable | Fecha límite | Estado                  |
+| Acción | Responsable | Fecha límite | Estado |
 | --- | --- | --- | --- |
-| Comprobar `main` desde limpio | Nicolás | 20/10/2026 | Pendiente |
-| Cerrar e integrar el Hito 1 | Nicolás | 20/10/2026 | Pendiente |
+| Comprobar `main` desde limpio | Nicolás | 20/10/2026 | Hecho |
+| Cerrar e integrar el Hito 1 | Nicolás | 20/10/2026 | Hecho |
 | Completar `AI-01-hito-funcional.md` | Ángel | 20/10/2026 | Hecho |
-| Revisar README y documentación | Pedro Jesús | 20/10/2026 | Pendiente |
+| Revisar README y documentación | Pedro Jesús | 20/10/2026 | Hecho |
 | Actualizar modelo/diagramas |Aún no aplica| - | Pendiente |
 | Revisar problemas pendientes y deuda técnica | Nicolás | 20/10/2026 | Hecho |
-| Identificar versión intermedia | Pablo | 20/10/2026 | Pendiente |
-| Preparar demo | Nicolás | 20/10/2026 | Pendiente |
+| Identificar versión intermedia | Pablo | 20/10/2026 | Hecho |
+| Preparar demo | Nicolás | 20/10/2026 | Hecho |
 
 ---
 
