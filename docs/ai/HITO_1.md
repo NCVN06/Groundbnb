@@ -633,7 +633,7 @@ git diff
 - **PR:**  
 - **Issue vinculada: #11**  
 - **Revisor/a: Nicolás Carlos Vladila Nastasoiu, Pedro Jesús de los Reyes Cabañas**  
-- **Estado:** Abierta / En revisión / Aprobada / Integrada  
+- **Estado:** Integrada  
 
 #### Revisión de la PR
 
@@ -667,7 +667,7 @@ git diff
 - [X] Issue #11 implementada según los cambios descritos en la sección 6.
 - [X] Build verificado según el resultado documentado en la sección 
 - [X] Catálogo y búsqueda comprobados manualmente en la interfaz, según los casos descritos en la sección 7.
-- [ ] Enlace y estado de la PR completados en la sección 9.
+- [X] PR revisable: https://github.com/NCVN06/Groundbnb/pull/32
 - [X] Documentación del hito actualizada.
 
 #### Resumen breve para defensa
