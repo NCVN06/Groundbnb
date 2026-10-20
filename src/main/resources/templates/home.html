@@ -2,11 +2,42 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8">
-        <title>Rental Platform</title>
+        <title>Alojamientos disponibles</title>
     </head>
     <body>
         <h1>Plataforma de alquiler de viviendas</h1>
-            <p>Aplicación Spring Boot en ejecución.</p>
+        <form action="/" method="get">
+            <label for="query">Buscar alojamientos</label>
+            <input id="query" name="query" type="search" th:value="${query}">
+            <button type="submit">Buscar</button>
+        </form>
+
+        <h2>Alojamientos disponibles</h2>
+        <p th:if="${searchSubmitted and !hasQuery}" role="alert">
+            No has introducido una búsqueda.
+        </p>
+        <p th:if="${searchSubmitted and hasQuery and #lists.isEmpty(properties)}" role="alert">
+            No se ha encontrado ninguna propiedad que coincida con la búsqueda.
+        </p>
+        <p th:if="${!searchSubmitted and #lists.isEmpty(properties)}" role="status">
+            Todavía no hay alojamientos publicados.
+        </p>
+        <ul th:unless="${#lists.isEmpty(properties)}">
+            <li th:each="property : ${properties}">
+                <article>
+                    <h3 th:text="${property.title}"></h3>
+                    <p th:text="${property.description}"></p>
+                    <p>
+                        <span th:text="${property.address}"></span>,
+                        <span th:text="${property.city}"></span>
+                    </p>
+                    <p>
+                        Precio por noche:
+                        <span th:text="${property.pricePerNight}"></span>
+                    </p>
+                </article>
+            </li>
+        </ul>
         <a href="/properties/new">Publicar una propiedad</a>
     </body>
 </html>

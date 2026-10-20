@@ -8,7 +8,7 @@ Esta versión inicial se prepara antes de la entrega intermedia con carácter fo
 
 - **Equipo / empresa: Groundbnb**  
 - **Fecha:14/10/2026** 
-- **Versión del documento:** 0.2
+- **Versión del documento:** 0.3
 - **Responsable de mantener el plan: Nuria** 
 - **Sprint actual del equipo:** Sprint 3 
 
@@ -46,7 +46,7 @@ Criterios actuales:
 
 - la aplicación arranca correctamente desde `main`;
 - el build desde limpio finaliza correctamente;
-- los datos persistentes se guardan y recuperan correctamente;
+- los datos persistentes aún no se guardan ni recuperan correctamente, pero la base de datos está implementada;
 - las entradas inválidas reciben un tratamiento controlado;
 - los errores conocidos no se ocultan.
 
@@ -123,12 +123,7 @@ Criterios actuales:
 
 | Aspecto pendiente | Tipo | Acción prevista | Responsable | Estado |
 |---|---|---|---|---|
-| Lógica de negocio concentrada en Controller | Diseño | Revisar y mover lógica a Service |  | Pendiente |
-| Validaciones incompletas | Funcional | Revisar entradas del primer flujo |  | Pendiente |
-| Modelo y código desalineados | Documentación / diseño | Actualizar diagramas tras cambios |  | Pendiente |
-| `main` deja de construir tras una integración | Integración | Ejecutar `clean verify` antes y después del merge |  | Pendiente |
-| README desactualizado | Documentación | Revisar instrucciones antes de la entrega |  | Pendiente |
-| Información sensible en el repositorio | Configuración | Revisar `.gitignore` y cambios antes de commit |  | Pendiente |
+| Persistencia | Funcional | Implementar script que simule persistencia | Nicolás | Pendiente |
 
 > El equipo debe adaptar esta tabla a los problemas, limitaciones o dependencias reales de su proyecto. No es necesario conservar ejemplos que no apliquen.
 
@@ -140,7 +135,7 @@ Registrar únicamente deuda que el equipo conoce y ha decidido posponer de forma
 
 | Deuda técnica | Motivo por el que se pospone | Prioridad | Acción futura |
 |---|---|---|---|
-|  |  |  |  |
+| Mostrar propiedades cuando la cadena de búsqueda esté vacia | No es un error que impida el funcionamiento de la aplicación | 1 | Buscar donde reside el error y solucionarlo |
 |  |  |  |  |
 
 Ejemplos posibles:
@@ -176,16 +171,16 @@ Antes de considerar una issue lista para integrarse, se comprobará:
 
 ## 7. Acciones iniciales antes de la entrega intermedia
 
-| Acción                                       | Responsable | Fecha límite | Estado                  |
-|---                                           |             |              |                         |
-| Comprobar `main` desde limpio                |  Nicolás    |20/10/2026    | Hecho                   |
-| Cerrar e integrar el Hito 1                  |  Nicolás    |20/10/2026    | Pendiente               |
-| Completar `AI-01-hito-funcional.md`          |   Ángel     |20/10/2026    | Pendiente               |
-| Revisar README y documentación               |   Nuria     |20/10/2026    | Pendiente               |
-| Actualizar modelo/diagramas                  |Aún no aplica|    -         | Pendiente               |
-| Revisar problemas pendientes y deuda técnica |   Nicolás   |20/10/2026    | Pendiente               |
-| Identificar versión intermedia               |    Pablo    |20/10/2026    | Pendiente               |
-| Preparar demo                                |   Nicolás   |20/10/2026    | Pendiente               |
+| Acción | Responsable | Fecha límite | Estado                  |
+| --- | --- | --- | --- |
+| Comprobar `main` desde limpio | Nicolás | 20/10/2026 | Pendiente |
+| Cerrar e integrar el Hito 1 | Nicolás | 20/10/2026 | Pendiente |
+| Completar `AI-01-hito-funcional.md` | Ángel | 20/10/2026 | Hecho |
+| Revisar README y documentación | Pedro Jesús | 20/10/2026 | Pendiente |
+| Actualizar modelo/diagramas |Aún no aplica| - | Pendiente |
+| Revisar problemas pendientes y deuda técnica | Nicolás | 20/10/2026 | Hecho |
+| Identificar versión intermedia | Pablo | 20/10/2026 | Pendiente |
+| Preparar demo | Nicolás | 20/10/2026 | Pendiente |
 
 ---
 

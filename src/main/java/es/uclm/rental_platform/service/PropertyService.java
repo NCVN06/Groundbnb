@@ -1,6 +1,7 @@
 package es.uclm.rental_platform.service;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,5 +51,23 @@ public class PropertyService {
         Property property = new Property(title, description, address, city, pricePerNight, amenities, type,
                 instantBooking);
         return propertyRepository.save(property);
+    }
+
+    /**
+     * Busca propiedades por texto en sus datos descriptivos y de ubicación.
+     *
+     * @param query texto libre que se buscará en título, descripción, dirección y
+     *        ciudad; si está vacío o contiene solo espacios, devuelve todas las
+     *        propiedades
+     * @return propiedades que coinciden con la consulta, o todas si está vacía
+     */
+    @Transactional(readOnly = true)
+    public List<Property> searchProperties(String query) {
+        if (query == null || query.isBlank()) {
+            return propertyRepository.findAll();
+        }
+
+        String searchTerm = query.trim();
+        return propertyRepository.searchByText(searchTerm);
     }
 }

@@ -323,3 +323,368 @@ git diff
 > **La IA puede proponer e implementar cambios, pero no puede aprobar su propio trabajo.**
 >
 > El equipo es responsable de comprender, revisar, verificar y justificar todo lo que se integra en el proyecto.
+
+--------------------------------------------------------------------------------------------------------------------------
+### 2. Alcance de la issue #11
+
+#### Objetivo
+
+Permitir a cualquier usuario (incluso sin estar registrado) visualizar el catálogo de alojamientos disponibles y realizar búsquedas básicas por texto libre, facilitando la exploración inicial de las opciones de alquiler en el sistema
+
+#### Criterios de aceptación relevantes
+
+[ El sistema debe presentar una pantalla inicial que muestre los alojamientos registrados disponibles. ]
+
+[ Un usuario debe poder iniciar y ejecutar una búsqueda de alojamientos en el sistema introduciendo texto de forma libre. ]
+
+[ El sistema debe procesar la búsqueda y mostrar el listado de propiedades resultantes que coincidan con el texto introducido. ]
+
+[El sistema no debe distinguir entre  mayúsculas y minusculas para decidir la ausencia de resultados.]
+
+
+#### Fuera de alcance
+
+- puntos de acceso (botones o enlaces) para aplicar filtros avanzados, iniciar una reserva o agregar a favoritos, sirviendo como punto de entrada para futuras issues. 
+- Implementación de búsqueda difusa avanzada (fuzzy search) o autocorrección ortográfica (la búsqueda se limitará a coincidencias de texto exactas o parciales básicas).
+- Implementación de autocorrección ortográfica (la búsqueda se limitará a coincidencias de texto exactas o parciales básicas).
+
+---
+
+### 3. Plan humano previo
+
+
+#### Plan inicial del equipo
+
+1.  Tener encuenta los requisitos para el desarrollo de la funcionalidad.
+2.  Plantear el prompt a la IA agentica para el desarrollo del código 
+3.  Validar y corregir en caso de ser necesario la implementacion propuesta por la IA agentica
+
+#### Archivos o capas que se prevé modificar
+
+- Capa de Dominio: rental_platform/domain/Property.java (Nueva entidad).
+                    rental_platform/domain/PropertyService
+- Capa de Persistencia: rental_platform/repository/PropertyRepository.java (Nueva interfaz).
+-Capa de Presentación: rental_platform/web/PropertyController.java (Nuevo controlador).
+                                            HomeController.java
+
+#### Dependencias, supuestos o dudas
+
+- La configuracion de base de datos H2, esta implementada 
+- el servidor web por medio de spring boot esta implementado
+- van a estar en diferentes enlaces cada funcionalidad  
+
+
+#### Cómo se comprobará que funciona
+
+- Prueba de camino feliz (Happy path): 
+
+El usuario accede a la plataforma web sin haber iniciado sesión (estado de invitado). La base de datos contiene alojamientos de prueba. El usuario hace clic en la barra de búsqueda y escribe un término válido que sabe que existe y sl sistema carga y muestra únicamente los alojamientos que contienen la palabra, con su descripción, ubicación y precio por noche
+
+
+- Prueba de validación (Camino alternativo): 
+
+El usuario introduce un término de búsqueda muy específico o con errores tipográficos graves.
+El sistema no se rompe ni muestra errores técnicos. En su lugar, la pantalla se limpia de alojamientos y muestra un mensaje e indicando que no hay resultados
+
+---
+
+### 4. Contexto y propuesta del agente
+
+#### Contexto proporcionado
+
+- [X] Repositorio abierto
+- [X] Rama correcta: feature/03-Busqueda-propiedades
+- [X] `AGENTS.md` y skills aplicables
+- [X] Issue y criterios de aceptación
+- [X] Código existente relevante
+- [X] Estructura Maven / Spring Boot (Archivos: Property.java, PropertyRepository.java, PropertyService.java, PropertyController.java)
+
+Herramienta / agente: GitHub Copilot / ChatGPT
+Entorno: VS Code 
+Modelo, si procede: GPT-4o
+
+
+
+#### Prompt principal
+
+Analiza este repositorio.
+1. Lee AGENTS.md.
+2. Identifica tecnología
+y estructura.
+3. Resume las reglas que
+debes respetar.
+4. Indica la rama actual.
+No modifiques archivos.
+No ejecutes cambios.
+
+Actúa como desarrollador Java experto en Spring Boot. Necesitamos implementar la historia de usuario "Busqueda de propiedades" (Issue #11). 
+
+Tu tarea es generar el código para implementar la Issue #11, creando un catálogo de propiedades en la página de inicio y un buscador de texto básico para usuarios no registrados. Debes respetar estrictamente una arquitectura por capas y evitar programar cualquier funcionalidad que esté fuera de alcance. Solo debes proporcionarme el código necesario y explicar brevemente a qué archivo pertenece cada bloque.
+
+En el backend, debes crear un endpoint GET en el Controlador que reciba el parámetro de búsqueda. La capa de Servicio concentrará la lógica, decidiendo devolver todo el catálogo si la búsqueda está vacía, o filtrar los datos si el usuario introdujo texto. El Repositorio se encargará de ejecutar una consulta a la base de datos que busque coincidencias parciales, sin distinguir entre mayúsculas y minúsculas, revisando los campos de título, descripción, dirección y ciudad de los alojamientos.
+
+Para la vista, genera el código necesario que incluya una barra de búsqueda y el listado de tarjetas con los resultados. Debes contemplar un estado inicial sin búsqueda y un diseño para cuando no haya coincidencias, mostrando un mensaje al usuario
+
+#### Plan propuesto por el agente
+
+Plan propuesto para implementar la issue #11 
+
+Añadir el catálogo a la pantalla inicial y permitir buscar con texto mediante una petición GET.
+Mantener la arquitectura por capas: el repositorio consultará propiedades y el servicio concentrará la búsqueda; el controlador solo enlazará la consulta con la vista.
+Mostrar en la vista los resultados, un estado inicial sin búsqueda y un mensaje cuando no haya coincidencias.
+Incluir en la vista los puntos de acceso a filtros avanzados, reserva y lista de deseos, sin implementar esas funcionalidades fuera del alcance descrito.
+Añadir pruebas de búsqueda y vista, y ejecutar las pruebas Maven pertinentes.
+Para hacer el comportamiento concreto, propongo que la búsqueda encuentre coincidencias sin distinguir mayúsculas/minúsculas en título, descripción, dirección y ciudad; que una consulta vacía muestre todo el catálogo; y que las tres extensiones se representen como accesos visuales sin acciones funcionales. El repositorio no contiene el diagrama referido por la issue (el documento de diagramas solo es un marcador), así que no puedo verificar otras formas o destinos para esos accesos. 
+
+**Archivos o componentes propuestos:**
+
+- Dominio/persistencia: Property.java, PropertyRepository.java
+
+- Caso de uso/web: PropertyService.java, HomeController.java
+
+¡
+
+### 5. Revisión humana del plan
+
+
+#### Cambios solicitados antes de implementar
+
+- No implementar ni funcionalidades ni botones de filtros avanzados porque no entran en el alance actual
+- No implementar ni funcionalidades ni botones de añadir a favoritos porque no entran en el alcance actual
+- 
+
+#### Plan final aprobado
+
+    En PropertyRepository.java añadirñe una consulta insensible a mayúsculas/minúsculas que busca en título, descripción, dirección y ciudad.En PropertyService.java añadí la búsqueda por capas: elimina espacios externos y devuelve todas las propiedades si la consulta está vacía.
+
+    En HomeController.java conecté la página inicial con el servicio y envié los resultados y el estado de búsqueda a la vista.
+    En home.html añadí el formulario GET, el catálogo y mensajes para el catálogo vacío o las búsquedas sin resultados.
+
+    En PropertySearchTests.java añadí pruebas para consulta vacía, coincidencia sin distinguir mayúsculas y ausencia de resultados.
+
+
+Tal como acordamos, quedan fuera los filtros, reservas, lista de deseos y sus accesos visuales
+---
+
+### 6. Implementación y revisión del código
+
+#### Cambios principales
+
+**Archivo Component:e**        
+    
+PropertyRepository.java         
+
+**Cambio realizado:**
+
+Adición de una consulta de búsqueda insensible a mayúsculas/minúsculas  que filtra por título, descripción, dirección y ciudad.
+
+**Motivo:**
+
+Permitir la búsqueda flexible de propiedades en la base de datos sin obligar al usuario a ser exacto con las mayúsculas, mejorando la experiencia de búsqueda básica.
+
+**Archivo Component:e**        
+    
+PropertyService.java        
+
+**Cambio realizado:**
+
+Implementación de la lógica de negocio para la búsqueda y retorno de todo el catálogo si el parámetro de búsqueda está vacío.
+
+**Motivo:**
+
+Era necesaria la implementacion
+**Motivo:**
+
+Permitir la búsqueda flexible de propiedades en la base de datos sin obligar al usuario a ser exacto con las mayúsculas, mejorando la experiencia de búsqueda básica.
+
+**Archivo Componente:**        
+    
+HomeController.java     
+
+**Cambio realizado:**
+
+Conexión del endpoint de la página inicial con PropertyService, inyectando el término de búsqueda y los resultados obtenidos en el modelo de la vista.
+
+**Motivo:**
+
+Exponer la funcionalidad de búsqueda a través de peticiones HTTP GET y suministrar a la plantilla frontend los datos necesarios 
+
+**Archivo Componente:**      
+
+PropertySearchTests.java
+
+**Cambio realizado:**
+
+Creación de casos de prueba para validar tres escenarios: consulta vacía (devuelve todo), coincidencias  y búsqueda sin resultados.
+
+**Motivo:**
+
+Asegurar la calidad del código y verificar que los requerimientos de la Issue #11 (Happy Path y Caminos Alternativos) funcionan correctamente sin regresiones
+
+
+
+#### Revisión humana
+
+- [X]Los cambios pertenecen a la issue.
+- [X]No se ha ampliado innecesariamente el alcance.
+- [X]La separación por capas se mantiene.
+- [X]La lógica de negocio no se concentra en el controlador.
+- [X]Las entidades y relaciones JPA se pueden justificar, si procede.
+- [X]Las validaciones y errores son controlados.
+- [X]No se han añadido archivos temporales o ajenos.
+- [X]El equipo comprende los cambios realizados.
+
+#### Problemas o carencias detectados
+
+| Problema | Corrección / decisión |
+
+Se tuvo que pedir e implementar control de errores 
+
+Se tuvo que descartar la idea de implementar frontend de funcionalidades que no aplican a la issue
+
+
+
+### 7. Verificación
+
+#### Build
+
+```powershell
+.\mvnw.cmd verify
+```
+
+- [X] `BUILD SUCCESS`
+- [ ] Fallo
+
+**Observaciones:**  
+Compilación limpia, las pruebas de contexto de Spring arrancan correctamente.
+
+
+#### Ejecución de la funcionalidad
+
+```powershell
+.\mvnw.cmd spring-boot:run
+```
+
+- [X] La aplicación arranca correctamente.
+- [X] La funcionalidad puede ejecutarse desde la interfaz o endpoint previsto.
+
+
+
+#### Comprobación funcional
+
+**Caso válido**
+
+- **Entrada / acción: Bucar una casa/habitación que existe en la base de datos**  
+- **Resultado esperado: Mostrar liste de coincidencias con las cracteristicas de las propiedades**  
+
+- **Resultado obtenido: Mostrar liste de coincidencias con las cracteristicas de las propiedades**  
+
+
+
+- **Entrada/ acción: sin ingresar ningún texto en el formulario de búsqueda**  
+- **Resultado esperado: se muestra el formulario de búsqueda y la totalidad del catálogo**  
+- **Resultado obtenido: se muestra el formulario de búsqueda y la totalidad del catálogo**
+
+
+**Caso inválido o error controlado**
+
+- **Entrada/ acción: s**  
+- **Resultado esperado:  Mostrar Todas  **  
+- **Resultado obtenido: mensaje avisando obligatoriedad del campo**
+
+- **Entrada/ acción:**  
+- **Resultado esperado:** 
+- **Resultado obtenido:**
+
+
+
+#### Persistencia, si procede
+
+-- No procede debido a que la issue se basa en la consulta de la Base de Datos, todas las pruebas se han hecho en la web
+
+
+#### Revisión final del cambio
+
+```powershell
+git status
+git diff
+```
+
+- [X] Solo aparecen cambios relacionados con la issue.
+- [X] El equipo ha revisado y comprende el diff.
+- [X] No hay archivos generados, temporales o ajenos.
+
+---
+
+### 8. Evidencias
+
+| Evidencia | Captura / enlace |
+|---|---|
+| Plan propuesto por el agente | [Ver captura del plan de IA](../PlanIAagentica.png) |
+| Funcionalidad ejecutada | [Ver captura de la funcionalidad](../funcionalidad.png) |
+| Verificación / persistencia | [Ver captura de la prueba en base de datos](../basedatosprueba.png) |
+| Pull Request | |
+
+
+---
+
+### 9. Pull Request y cierre
+
+- **PR:**  
+- **Issue vinculada: #11**  
+- **Revisor/a: Nicolás Carlos Vladila Nastasoiu, Pedro Jesús de los Reyes Cabañas**  
+- **Estado:** Abierta / En revisión / Aprobada / Integrada  
+
+#### Revisión de la PR
+
+- [X] Alcance correcto.
+- [X] Diseño y separación por capas revisados.
+- [X] Build correcto.
+- [X] Persistencia y validaciones revisadas, si procede.
+- [X] Documentación actualizada.
+- [X] Uso de IA declarado.
+- [X] Deuda técnica, limitaciones o cuestiones pendientes identificadas.
+
+#### Observaciones del revisor
+
+- 
+- 
+
+---
+
+### 10. Conclusión y defensa de Issue #11
+
+#### Conclusión
+
+- **Qué aportó el agente:** Propuso e implementó un catálogo de propiedades en la página inicial y una búsqueda básica por texto mediante una petición GET. La solución documentada separa responsabilidades: el repositorio consulta por título, descripción, dirección y ciudad sin distinguir mayúsculas; el servicio trata las consultas vacías y el controlador proporciona los resultados a la vista.
+- **Qué tuvo que revisar o corregir el equipo:** El equipo acotó el alcance y decidió no incluir accesos visuales para filtros avanzados ni para añadir propiedades a favoritos. También pidió incorporar control de errores.
+- **Qué propuesta no debía aceptarse directamente:** La propuesta de incluir accesos visuales a filtros avanzados, reservas y lista de deseos no debía incorporarse, porque esas funcionalidades y sus accesos quedaron fuera del alcance acordado.
+- **Qué decisión humana fue más importante:** Delimitar el trabajo a la búsqueda y al catálogo básicos, evitando ampliar la interfaz con puntos de entrada a funcionalidades futuras que no forman parte de la issue.
+- **Cómo se verificó:** La sección 7 documenta la ejecución de `mvnw.cmd verify`, el arranque de la aplicación y comprobaciones funcionales desde la web: búsqueda con coincidencias y consulta vacía, que muestra el catálogo se han hecho de manera manual
+
+#### Estado final
+
+- [X] Issue #11 implementada según los cambios descritos en la sección 6.
+- [X] Build verificado según el resultado documentado en la sección 
+- [X] Catálogo y búsqueda comprobados manualmente en la interfaz, según los casos descritos en la sección 7.
+- [ ] Enlace y estado de la PR completados en la sección 9.
+- [X] Documentación del hito actualizada.
+
+#### Resumen breve para defensa
+
+**Issue:** #11, búsqueda de propiedades.
+
+**Qué hizo el agente:** Propuso e implementó un catálogo inicial y una búsqueda textual básica por capas, incluyendo el tratamiento de una consulta vacía y la presentación de resultados.
+
+**Qué decidió el equipo:** Mantener el alcance centrado en catálogo y búsqueda; no incluir accesos visuales a filtros avanzados ni a favoritos, y solicitar control de errores.
+
+**Cómo se verificó:** El documento registra un build correcto, el arranque de la aplicación y comprobaciones web. La búsqueda sin texto mostró el catálogo 
+
+**Conclusión:** La implementación cubre el flujo básico descrito para la búsqueda, mientras que el equipo definió los límites del alcance 
+---
+
+#### Regla final
+
+> **La IA puede proponer e implementar cambios, pero no puede aprobar su propio trabajo.**
+>
+> El equipo es responsable de comprender, revisar, verificar y justificar todo lo que se integra en el proyecto.
