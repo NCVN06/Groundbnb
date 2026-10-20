@@ -31,7 +31,7 @@ Desarrollar una plataforma para la gestión de alquiler de viviendas siguiendo u
 ### Sprint 1
 16/09/2026 - 22/09/2026
 
-- Implementar Maven y Spring Boot al proyecto
+- Implementar Maven y Spring Boot al proyecto.
 
 ### Sprint 2
 23/09/2026 - 30/09/2026
@@ -40,42 +40,19 @@ Desarrollar una plataforma para la gestión de alquiler de viviendas siguiendo u
 - Añadir funcionalidades al backlog.
 
 ### Sprint 3
-01/10/2026 - 06/10/2026
+01/10/2026 - 14/10/2026
 
-- Impelementar JPA y H2DB en el proyecto
-- Terminar el backlog orientativo
+- Impelementar JPA y H2DB en el proyecto.
+- Terminar el backlog orientativo.
+- Comenzar funcionalidad candidata para el hito 1.
 
 ### Sprint 4
-07/10/2026 - 13/10/2026
+15/10/2026 - 20/10/2026
 
-Por concretar.
+- Implementar funcionalidad de alta de propiedades.
+- Implementar funcionalidad de busqueda de propiedades.
+- Revisar proyecto al completo antes de la entrega intermedia.
 
-## Construcción y ejecución
-
-Requisitos:
-- Java 17
-
-Comandos:
-
-.\mvnw.cmd clean
-.\mvnw.cmd test
-.\mvnw.cmd package
-.\mvnw.cmd verify
-.\mvnw.cmd spring-boot:run
-
-URL local:
-
-http://localhost:8080
-
-## Dependencias
-
-- spring-boot-starter-webmvc → aplicación web con Spring MVC: controladores y peticiones HTTP.
-- spring-boot-starter-thymeleaf → vistas HTML mediante plantillas Thymeleaf.
-- spring-boot-starter-webmvc-test → soporte para pruebas de Spring MVC.
-- spring-boot-starter-thymeleaf-test → soporte para pruebas de Thymeleaf.
-- spring-boot-starter-data-jpa -> infraestructura necesaria para trabajar con entidades
-- h2 -> motor de base de datos embebido
-- spring-boot-h2console -> consola web de H2
 
 ## Funcionalidad candidata para el hito 1
 
@@ -89,7 +66,8 @@ La documentación viva del proyecto se mantiene en:
 
 - `docs/technical/`: base técnica y dependencias.
 - `docs/diagrams/`: diagramas y modelos.
-- `docs/decisions/`: decisiones relevantes.
+- `docs/decisions/`: decisiones relevantes y plan de gestion.
+- `docs/ai/`: información sobre el uso de la IA.
 
 
 
