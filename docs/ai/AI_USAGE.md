@@ -11,6 +11,7 @@ Este documento recoge los usos relevantes de inteligncia artificial realizados d
 
 ## Hito 1 - Desarrollo funcional
 
+> Para información más detallada consultar docs/ai/HITO_1.md
 
 Analiza este repositorio.
 1. Lee AGENTS.md.
@@ -29,3 +30,29 @@ Genera el código para la entidad (Property.java), el repositorio JPA (PropertyR
 
 ## Crear JavaDoc
 Tu tarea es crear la documentación Javadoc completa, clara y detallada para el proyecto para todos los archivos pertinentes en java. Debes documentar el propósito de las clases, métodos, parámetros (@param), valores de retorno (@return) y excepciones (@throws), siguiendo las convenciones oficiales de Oracle. Usa las skills planteadas en el documento AGENTS.md. cualquier duda que tengas planteamela antes de hacer nada 
+
+## Arreglar errores
+### Simular persistencia
+Analiza la issue #35 y el repositorio.
+Antes de modificar código:
+
+Indica qué archivos revisarías
+Propón un plan de implementación
+Señala dependencias, supuestos o dudas
+relevantes
+No hagas cambios hasta aprobar el plan.
+Contexto: Java + Spring Boot + Maven,
+capas domain/repository/service/web.
+
+### Agregar enlace para volver a la pantalla de inicio
+Añade la opción de volver a la pantalla de inicio desde la vista de registro de propiedades.
+Antes de modificar código:
+
+Indica qué archivos revisarías
+Propón un plan de implementación
+Señala dependencias, supuestos o dudas
+relevantes
+No hagas cambios hasta aprobar el plan.
+Contexto: Java + Spring Boot + Maven,
+capas domain/repository/service/web.
+
