@@ -21,6 +21,10 @@ URL local:
 
 http://localhost:8080
 
+## Datos de demostración
+
+Al iniciar la aplicación se cargan cinco propiedades de ejemplo si la base de datos está vacía. H2 se ejecuta en memoria, por lo que los registros creados durante una ejecución no se conservan al reiniciar la aplicación; las propiedades de ejemplo vuelven a cargarse en el siguiente inicio.
+
 ## Dependencias
 
 - spring-boot-starter-webmvc → aplicación web con Spring MVC: controladores y peticiones HTTP.
@@ -31,6 +35,7 @@ http://localhost:8080
 - h2 -> motor de base de datos embebido.
 - spring-boot-h2console -> consola web de H2.
 - spring-boot-starter-validation -> Soporte para la validación de datos basada en especificaciones de Java Bean Validation (Jakarta Validation).
+
 
 **Plugins**
 
