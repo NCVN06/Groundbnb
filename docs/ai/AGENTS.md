@@ -55,3 +55,20 @@ After implementation:
 - Do not expand the scope of the issue.
 - Do not approve or integrate changes.
 - The team executes the verification and makes the final decision.
+
+### Skill: Review change before integration
+
+**Before implementing:**
+- Issue acceptance criteria.
+- Bounded diff.
+- Verified build.
+
+**Review:**
+- Afected documentation.
+- Technical debt.
+- Known limitations.
+
+**Never:**
+- Approve Pull Request.
+- Merge branches.
+- Hide errors.
