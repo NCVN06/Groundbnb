@@ -1,12 +1,15 @@
 package es.uclm.rental_platform.web;
 
 import java.math.BigDecimal;
+import java.util.StringJoiner;
 
 import es.uclm.rental_platform.domain.PropertyType;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 /**
  * Objeto de formulario que contiene y valida los valores enviados al registrar
@@ -25,13 +28,54 @@ public class PropertyForm {
     @NotBlank
     private String description;
 
-    /** Dirección de la propiedad; no puede estar vacía. */
+    /** Tipo de vía elegido en el desplegable. */
     @NotBlank
-    private String address;
+    @Pattern(regexp = "Calle|Avenida|Plaza|Paseo|Carretera|Camino|Travesía|Otro",
+            message = "Selecciona un tipo de vía válido.")
+    private String streetType;
+
+    /** Nombre de la calle o vía; no puede estar vacío. */
+    @NotBlank
+    @Size(max = 150)
+    private String streetName;
+
+    /** Número del inmueble; admite valores como «s/n» o «12 bis». */
+    @NotBlank
+    @Size(max = 20)
+    private String number;
+
+    /** Portal del inmueble; puede no estar indicado. */
+    @Size(max = 20)
+    private String portal;
+
+    /** Piso o planta; puede no estar indicado. */
+    @Size(max = 20)
+    private String floor;
+
+    /** Puerta; puede no estar indicada. */
+    @Size(max = 20)
+    private String door;
+
+    /** Código postal; no puede estar vacío. */
+    @NotBlank
+    @Pattern(regexp = "[0-9]{5}", message = "Introduce un código postal de 5 dígitos.")
+    private String postalCode;
 
     /** Ciudad donde se encuentra la propiedad; no puede estar vacía. */
     @NotBlank
     private String city;
+
+    /** Provincia donde se encuentra la propiedad; no puede estar vacía. */
+    @NotBlank
+    @Pattern(regexp = "Álava|Albacete|Alicante/Alacant|Almería|Ávila|Badajoz|Illes Balears|"
+            + "Barcelona|Burgos|Cáceres|Cádiz|Castellón/Castelló|Ciudad Real|Córdoba|A Coruña|"
+            + "Cuenca|Girona|Granada|Guadalajara|Gipuzkoa|Huelva|Huesca|Jaén|León|Lleida|La Rioja|"
+            + "Lugo|Madrid|Málaga|Murcia|Navarra|Ourense|Asturias|Palencia|Las Palmas|Pontevedra|"
+            + "Salamanca|Santa Cruz de Tenerife|Cantabria|Segovia|Sevilla|Soria|Tarragona|Teruel|"
+            + "Toledo|Valencia/València|Valladolid|Bizkaia|Zamora|Zaragoza|"
+            + "Ciudad Autónoma de Ceuta|Ciudad Autónoma de Melilla",
+            message = "Selecciona una provincia válida.")
+    private String province;
 
     /** Precio por noche de la propiedad; debe ser positivo y tener como máximo dos decimales. */
     @NotNull
@@ -92,17 +136,65 @@ public class PropertyForm {
      *
      * @return la dirección, o {@code null} si aún no se ha establecido
      */
-    public String getAddress() {
-        return address;
+    public String getStreetType() {
+        return streetType;
     }
 
     /**
-     * Establece la dirección de la propiedad.
+     * Establece el tipo de vía seleccionado.
      *
-     * @param address dirección que se asignará
+     * @param streetType tipo de vía
      */
-    public void setAddress(String address) {
-        this.address = address;
+    public void setStreetType(String streetType) {
+        this.streetType = streetType;
+    }
+
+    public String getStreetName() {
+        return streetName;
+    }
+
+    public void setStreetName(String streetName) {
+        this.streetName = streetName;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getPortal() {
+        return portal;
+    }
+
+    public void setPortal(String portal) {
+        this.portal = portal;
+    }
+
+    public String getFloor() {
+        return floor;
+    }
+
+    public void setFloor(String floor) {
+        this.floor = floor;
+    }
+
+    public String getDoor() {
+        return door;
+    }
+
+    public void setDoor(String door) {
+        this.door = door;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
     }
 
     /**
@@ -121,6 +213,38 @@ public class PropertyForm {
      */
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    /**
+     * Devuelve los componentes de la dirección en el formato que se almacena
+     * actualmente en la propiedad.
+     *
+     * @return dirección postal sin la ciudad, almacenada por separado
+     */
+    public String getAddress() {
+        StringJoiner address = new StringJoiner(", ");
+        address.add(streetType + " " + streetName.trim());
+        address.add(number.trim());
+        addOptionalAddressPart(address, "portal", portal);
+        addOptionalAddressPart(address, "piso", floor);
+        addOptionalAddressPart(address, "puerta", door);
+        address.add("C.P. " + postalCode.trim());
+        address.add(province.trim());
+        return address.toString();
+    }
+
+    private void addOptionalAddressPart(StringJoiner address, String label, String value) {
+        if (value != null && !value.isBlank()) {
+            address.add(label + " " + value.trim());
+        }
     }
 
     /**
