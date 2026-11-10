@@ -53,6 +53,18 @@ Desarrollar una plataforma para la gestión de alquiler de viviendas siguiendo u
 - Implementar funcionalidad de busqueda de propiedades.
 - Revisar proyecto al completo antes de la entrega intermedia.
 
+### Santa Tecla
+21/10/2026 - 03/11/2026
+
+Durante este periodo no se avanzó en el desarrollo del proyecto.
+
+### Sprint 5
+04/11/2026 - 11/11/2026
+
+- Arreglar el formato del alta de propiedades.
+- Implementar tests y su documentación.
+- Eliminar ramas en desuso.
+- Actualizar backlog cambiando el formato y añadiendo issues.
 
 ## Funcionalidad candidata para el hito 1
 
@@ -68,6 +80,6 @@ La documentación viva del proyecto se mantiene en:
 - `docs/diagrams/`: diagramas y modelos.
 - `docs/decisions/`: decisiones relevantes y plan de gestion.
 - `docs/ai/`: información sobre el uso de la IA.
-
+- `docs/testing/`: información sobre los tests.
 
 
