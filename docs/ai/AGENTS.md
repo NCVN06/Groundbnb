@@ -72,3 +72,31 @@ After implementation:
 - Approve Pull Request.
 - Merge branches.
 - Hide errors.
+
+### Skill: Review JUnit tests
+
+**Use this skill when implementing or reviewing automated tests.**
+
+1. Read the related issue, acceptance criteria and relevant entries in `TEST_PLAN.md`.
+2. Inspect the production code and the affected test classes.
+3. Check that each relevant test protects a clear behavior or criterion.
+4. Review whether the test uses suitable valid, invalid or boundary data when applicable.
+5. Check that assertions verify meaningful outcomes and are not trivially always true.
+6. Review whether the test scope is appropriate and avoids unnecessary coupling to implementation details.
+7. Check that the test name clearly describes the behavior being verified.
+8. Execute the relevant Maven test or verification command.
+9. Summarize:
+   - what behavior is protected;
+   - any weak, fragile or missing test;
+   - assumptions or pending questions.
+
+Do not:
+
+- remove or disable tests to make the build pass;
+- weaken assertions to obtain a green result;
+- change production requirements to fit the test;
+- hide failing tests or verification errors;
+- add unrelated functionality;
+- approve or integrate changes automatically.
+
+Human review is required before integration.
