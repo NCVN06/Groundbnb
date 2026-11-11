@@ -13,10 +13,10 @@
 
 - **Equipo / empresa:**  Groundbnb
 - **Repositorio:** github.com/NCVN06/Groundbnb
-- **Versión del documento:** 0.1  
+- **Versión del documento:** 0.2  
 - **Responsable de mantener el plan:** Pedro Jesús
-- **Sprint / iteración actual:** 5  
-- **Última actualización:** 04/11/2026 
+- **Sprint / iteración actual:** 6  
+- **Última actualización:** 10/11/2026 
 
 ---
 
@@ -39,8 +39,8 @@
 
 | Tipo | Cuándo se utiliza | Ejemplos en el proyecto |
 |---|---|---|
-| Unitaria | Para comprobar una clase, método o regla de negocio de forma aislada |  |
-| Integración | Para comprobar la colaboración entre varios componentes o con persistencia |  |
+| Unitaria | Para comprobar una clase, método o regla de negocio de forma aislada | FP-01 |
+| Integración | Para comprobar la colaboración entre varios componentes o con persistencia | FP-02 |
 | Web / controlador | Para comprobar rutas, formularios o respuestas cuando aporte valor |  |
 
 > El equipo no tiene que utilizar todos los tipos de prueba en todas las funcionalidades. Debe seleccionar el nivel de prueba adecuado al comportamiento que quiere proteger.
@@ -53,9 +53,8 @@
 
 | ID | Funcionalidad / comportamiento | Issue o requisito relacionado | Motivo de prioridad | Estado de pruebas |
 |---|---|---|---|---|
-| FP-01 |  |  |  | Pendiente / Parcial / Cubierto |
-| FP-02 |  |  |  | Pendiente / Parcial / Cubierto |
-| FP-03 |  |  |  | Pendiente / Parcial / Cubierto |
+| FP-01 | Alta de prioridades propiedades  | 13 | Comprobar la funcionalidad básica de creación de propiedades | Pendiente  |
+| FP-02 | Buscar propiedades | 11 | Comprobar la recuperación de informacióncon mediante la funcionalidad de búsqueda | Pendiente  |
 
 ---
 
@@ -65,9 +64,9 @@
 
 | ID | Funcionalidad | Criterio protegido | Tipo de caso | Entrada / situación | Resultado esperado | Prioridad |
 |---|---|---|---|---|---|---|
-| CP-01 |  |  | Válido |  |  | Alta / Media / Baja |
-| CP-02 |  |  | Inválido |  |  | Alta / Media / Baja |
-| CP-03 |  |  | Límite |  |  | Alta / Media / Baja |
+| CP-01 | FP-01 |  | Válido | Rellenamos los campos con valores validos para crear una propiedad  | Se crea la propiedd | Alta |
+| CP-02 | FP-01 |  | Inválido | Rellenamos los campos con valores incorrectos al crear la vivienda | El sistema informa que los dtos introducidos no son correctos | Media |
+| CP-03 | FP-02 |  | Valido | Introducimos los datos de una propiedad que existe en la base de datos | Se recupera la información de la propiedad | Alta |
 
 ### Convención
 
