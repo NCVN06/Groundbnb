@@ -1,5 +1,6 @@
 package es.uclm.rental_platform;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.not;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -59,14 +60,20 @@ class PropertySearchTests {
     }
 
     @Test
-    void queryFindsMatchesIgnoringCase() throws Exception {
+    void shouldReturnPropertyWhenExists() throws Exception {
+        // Arrange
         propertyRepository.save(property("Casa junto al mar", "Terraza amplia", "Calle Azul 4", "Alicante"));
         propertyRepository.save(property("Piso céntrico", "Cerca del centro", "Calle Sur 2", "Toledo"));
 
-        mockMvc.perform(get("/").param("query", "ALICANTE"))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("Casa junto al mar")))
-                .andExpect(content().string(not(containsString("Piso céntrico"))));
+        // Act
+        var response = mockMvc.perform(get("/").param("query", "ALICANTE"))
+                .andReturn();
+
+        // Assert
+        assertThat(response.getResponse().getStatus()).isEqualTo(200);
+        assertThat(response.getResponse().getContentAsString())
+                .contains("Casa junto al mar")
+                .doesNotContain("Piso céntrico");
     }
 
     @Test
