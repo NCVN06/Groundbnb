@@ -79,7 +79,6 @@ La documentación viva del proyecto se mantiene en:
 - `docs/technical/`: base técnica y dependencias.
 - `docs/diagrams/`: diagramas y modelos.
 - `docs/decisions/`: decisiones relevantes y plan de gestion.
-- `docs/ai/`: información sobre el uso de la IA.
+- `docs/ai/`: información sobre el uso de la IA e Hitos.
 - `docs/testing/`: información sobre los tests.
-
 
