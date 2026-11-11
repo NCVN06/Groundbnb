@@ -19,16 +19,133 @@
                 <textarea id="description" th:field="*{description}" required></textarea>
                 <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
             </div>
-            <div>
-                <label for="address">Dirección</label>
-                <input id="address" type="text" th:field="*{address}" required>
-                <span th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span>
-            </div>
-            <div>
-                <label for="city">Ciudad</label>
-                <input id="city" type="text" th:field="*{city}" required>
-                <span th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></span>
-            </div>
+            <fieldset>
+                <legend>Dirección</legend>
+                <div>
+                    <label for="streetType">Tipo de vía</label>
+                    <select id="streetType" th:field="*{streetType}" required>
+                        <option value="">Selecciona un tipo de vía</option>
+                        <option value="Calle">Calle</option>
+                        <option value="Avenida">Avenida</option>
+                        <option value="Plaza">Plaza</option>
+                        <option value="Paseo">Paseo</option>
+                        <option value="Carretera">Carretera</option>
+                        <option value="Camino">Camino</option>
+                        <option value="Travesía">Travesía</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                    <span th:if="${#fields.hasErrors('streetType')}" th:errors="*{streetType}"></span>
+                </div>
+                <div>
+                    <label for="streetName">Calle o nombre de la vía</label>
+                    <input id="streetName" type="text" th:field="*{streetName}"
+                           autocomplete="address-line1" required>
+                    <span th:if="${#fields.hasErrors('streetName')}" th:errors="*{streetName}"></span>
+                </div>
+                <div>
+                    <label for="number">Número</label>
+                    <input id="number" type="text" th:field="*{number}"
+                           maxlength="20" placeholder="Ej.: 10 o s/n" required>
+                    <span th:if="${#fields.hasErrors('number')}" th:errors="*{number}"></span>
+                </div>
+                <div>
+                    <label for="portal">Portal / Escalera (opcional)</label>
+                    <input id="portal" type="text" th:field="*{portal}" maxlength="20">
+                    <span th:if="${#fields.hasErrors('portal')}" th:errors="*{portal}"></span>
+                </div>
+                <div>
+                    <label for="floor">Piso o planta (opcional)</label>
+                    <input id="floor" type="text" th:field="*{floor}" maxlength="20">
+                    <span th:if="${#fields.hasErrors('floor')}" th:errors="*{floor}"></span>
+                </div>
+                <div>
+                    <label for="door">Puerta / Letra (opcional)</label>
+                    <input id="door" type="text" th:field="*{door}" maxlength="20">
+                    <span th:if="${#fields.hasErrors('door')}" th:errors="*{door}"></span>
+                </div>
+                <div>
+                    <label for="province">Provincia</label>
+                    <select id="province" th:field="*{province}" autocomplete="address-level1" required>
+                        <option value="">Selecciona una provincia</option>
+                        <optgroup label="Provincias">
+                            <option value="Álava">Álava</option>
+                            <option value="Albacete">Albacete</option>
+                            <option value="Alicante/Alacant">Alicante/Alacant</option>
+                            <option value="Almería">Almería</option>
+                            <option value="Ávila">Ávila</option>
+                            <option value="Badajoz">Badajoz</option>
+                            <option value="Illes Balears">Illes Balears</option>
+                            <option value="Barcelona">Barcelona</option>
+                            <option value="Burgos">Burgos</option>
+                            <option value="Cáceres">Cáceres</option>
+                            <option value="Cádiz">Cádiz</option>
+                            <option value="Castellón/Castelló">Castellón/Castelló</option>
+                            <option value="Ciudad Real">Ciudad Real</option>
+                            <option value="Córdoba">Córdoba</option>
+                            <option value="A Coruña">A Coruña</option>
+                            <option value="Cuenca">Cuenca</option>
+                            <option value="Girona">Girona</option>
+                            <option value="Granada">Granada</option>
+                            <option value="Guadalajara">Guadalajara</option>
+                            <option value="Gipuzkoa">Gipuzkoa</option>
+                            <option value="Huelva">Huelva</option>
+                            <option value="Huesca">Huesca</option>
+                            <option value="Jaén">Jaén</option>
+                            <option value="León">León</option>
+                            <option value="Lleida">Lleida</option>
+                            <option value="La Rioja">La Rioja</option>
+                            <option value="Lugo">Lugo</option>
+                            <option value="Madrid">Madrid</option>
+                            <option value="Málaga">Málaga</option>
+                            <option value="Murcia">Murcia</option>
+                            <option value="Navarra">Navarra</option>
+                            <option value="Ourense">Ourense</option>
+                            <option value="Asturias">Asturias</option>
+                            <option value="Palencia">Palencia</option>
+                            <option value="Las Palmas">Las Palmas</option>
+                            <option value="Pontevedra">Pontevedra</option>
+                            <option value="Salamanca">Salamanca</option>
+                            <option value="Santa Cruz de Tenerife">Santa Cruz de Tenerife</option>
+                            <option value="Cantabria">Cantabria</option>
+                            <option value="Segovia">Segovia</option>
+                            <option value="Sevilla">Sevilla</option>
+                            <option value="Soria">Soria</option>
+                            <option value="Tarragona">Tarragona</option>
+                            <option value="Teruel">Teruel</option>
+                            <option value="Toledo">Toledo</option>
+                            <option value="Valencia/València">Valencia/València</option>
+                            <option value="Valladolid">Valladolid</option>
+                            <option value="Bizkaia">Bizkaia</option>
+                            <option value="Zamora">Zamora</option>
+                            <option value="Zaragoza">Zaragoza</option>
+                        </optgroup>
+                        <optgroup label="Ciudades autónomas">
+                            <option value="Ciudad Autónoma de Ceuta">Ceuta</option>
+                            <option value="Ciudad Autónoma de Melilla">Melilla</option>
+                        </optgroup>
+                    </select>
+                    <span th:if="${#fields.hasErrors('province')}" th:errors="*{province}"></span>
+                </div>
+                <div>
+                    <label for="city">Ciudad / Municipio</label>
+                    <select id="city" th:field="*{city}" autocomplete="address-level2" required disabled>
+                        <option value="">Selecciona una provincia primero</option>
+                    </select>
+                    <span th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></span>
+                </div>
+                <div>
+                    <label for="postalCode">Código postal</label>
+                    <input id="postalCode" type="text" th:field="*{postalCode}"
+                           inputmode="numeric" pattern="[0-9]{5}" maxlength="5"
+                           placeholder="Se completará al elegir la ciudad"
+                           autocomplete="postal-code" required readonly>
+                    <select id="postalCodeOptions" autocomplete="postal-code" required disabled hidden>
+                        <option value="">Selecciona un código postal</option>
+                    </select>
+                    <span th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}"></span>
+                </div>
+                <small id="municipalityError" role="alert" hidden></small>
+            </fieldset>
             <div>
                 <label for="pricePerNight">Precio por noche</label>
                 <input id="pricePerNight" type="number" min="0.01" step="0.01"
@@ -64,5 +181,96 @@
             <button type="submit">Registrar propiedad</button>
         </form>
         <a th:href="@{/}">Volver al inicio</a>
+        <script th:inline="javascript">
+            const provinceSelect = document.getElementById("province");
+            const citySelect = document.getElementById("city");
+            const postalCodeInput = document.getElementById("postalCode");
+            const postalCodeSelect = document.getElementById("postalCodeOptions");
+            const municipalityError = document.getElementById("municipalityError");
+            const municipalityCatalogUrl = /*[[@{/data/municipalities.json}]]*/ "/data/municipalities.json";
+            const initialCity = /*[[${propertyForm.city}]]*/ "";
+            const initialPostalCode = postalCodeInput.value;
+            let municipalityCatalog;
+
+            function resetPostalCode() {
+                postalCodeInput.value = "";
+                postalCodeInput.disabled = false;
+                postalCodeInput.readOnly = true;
+                postalCodeInput.hidden = false;
+                postalCodeSelect.replaceChildren(new Option("Selecciona un código postal", ""));
+                postalCodeSelect.disabled = true;
+                postalCodeSelect.hidden = true;
+                postalCodeSelect.removeAttribute("name");
+            }
+
+            function updatePostalCodes(city, preferredPostalCode = "") {
+                const postalCodes = city ? city.postalCodes : [];
+                resetPostalCode();
+
+                if (postalCodes.length === 1) {
+                    postalCodeInput.value = postalCodes[0];
+                    return;
+                }
+
+                if (postalCodes.length > 1) {
+                    postalCodeInput.disabled = true;
+                    postalCodeInput.hidden = true;
+                    postalCodeSelect.name = "postalCode";
+                    postalCodeSelect.disabled = false;
+                    postalCodeSelect.hidden = false;
+
+                    for (const postalCode of postalCodes) {
+                        postalCodeSelect.add(new Option(postalCode, postalCode));
+                    }
+
+                    if (postalCodes.includes(preferredPostalCode)) {
+                        postalCodeSelect.value = preferredPostalCode;
+                    }
+                }
+            }
+
+            function updateCities(preferredCity = "", preferredPostalCode = "") {
+                const municipalities = municipalityCatalog[provinceSelect.value] || [];
+                citySelect.replaceChildren(new Option("Selecciona una ciudad", ""));
+                citySelect.disabled = municipalities.length === 0;
+
+                for (const municipality of municipalities) {
+                    citySelect.add(new Option(municipality.name, municipality.name));
+                }
+
+                if (municipalities.some(municipality => municipality.name === preferredCity)) {
+                    citySelect.value = preferredCity;
+                    const selectedCity = municipalities.find(municipality => municipality.name === preferredCity);
+                    updatePostalCodes(selectedCity, preferredPostalCode);
+                } else {
+                    citySelect.value = "";
+                    resetPostalCode();
+                }
+            }
+
+            fetch(municipalityCatalogUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`El catálogo respondió con HTTP ${response.status}.`);
+                    }
+                    return response.json();
+                })
+                .then(catalog => {
+                    municipalityCatalog = catalog;
+                    provinceSelect.addEventListener("change", () => updateCities());
+                    citySelect.addEventListener("change", () => {
+                        const municipality = (municipalityCatalog[provinceSelect.value] || [])
+                            .find(option => option.name === citySelect.value);
+                        updatePostalCodes(municipality);
+                    });
+                    updateCities(initialCity, initialPostalCode);
+                })
+                .catch(error => {
+                    console.error("No se pudo cargar el catálogo de municipios.", error);
+                    municipalityError.textContent =
+                        "No se pudo cargar el listado de ciudades. Recarga la página para volver a intentarlo.";
+                    municipalityError.hidden = false;
+                });
+        </script>
     </body>
 </html>
