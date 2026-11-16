@@ -26,10 +26,10 @@
 
 **Equipo / empresa:**  Groundbnb
 **Repositorio:** github.com/NCVN06/Groundbnb
-**Versión del documento:** 0.2  
-**Responsable de mantener el plan:** Pedro Jesús
+**Versión del documento:** 0.3  
+**Responsable de mantener el plan:** Pedro Jesús de los Reyes Cabañas
 **Sprint / iteración actual:** 6  
-**Última actualización:** 10/11/2026
+**Última actualización:** 16/11/2026
 
 
 ---
@@ -271,13 +271,13 @@ ser repetibles desde Maven.
 
 
 
-**Prueba seleccionada:**  
-**Comportamiento protegido:**  
-**Defecto introducido:**  
-**Resultado esperado:**  
-**¿La prueba falló?:** Sí / No  
-**Corrección realizada:**  
-**Resultado después de corregir:**  
+**Prueba seleccionada:** (src/main/test/java/es/uclm/rental_platfom/InitialPropertyDataLoaderTests.java)
+**Comportamiento protegido:** Comprobar que la persistencia simulada funciona creando 5 propiedades al arrancar el programa. 
+**Defecto introducido:** Crear solo 4 propiedades en vez de 5.
+**Resultado esperado:**  Debe fallar al realizar la comprobación "assertTrue(homes=>5)".
+**¿La prueba falló?:** Sí. ![alt text](DefectoDeliberado.png)
+**Corrección realizada:** Implementar nuevamente la propiedad eliminada.
+**Resultado después de corregir:**  BUILD SUCCESS
 
 
 ### Evidencia de ejecución
@@ -294,9 +294,9 @@ ser repetibles desde Maven.
 
 
 
-**Resultado antes del defecto:**  
-**Resultado con el defecto:**  
-**Resultado tras la corrección:**  
+**Resultado antes del defecto:** BUILD SUCCESS
+**Resultado con el defecto:**  BUILD FAILURE
+**Resultado tras la corrección:**  BUILD SUCCESS
 
 
 > La finalidad no es romper el proyecto sin motivo, sino demostrar que la prueba puede detectar el defecto que afirma proteger.
