@@ -1,8 +1,6 @@
-/* 
-package es.uclm.rental_platform;
+ package es.uclm.rental_platform;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,9 +8,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import es.uclm.rental_platform.domain.PropertyType;
 import es.uclm.rental_platform.repository.PropertyRepository;
 
-    //
-    //* Comprueba que el catálogo de ejemplo se carga al iniciar la aplicación.
-    //
+/**
+ * Comprueba que el catálogo de ejemplo se carga al iniciar la aplicación.
+ *  */ 
 @SpringBootTest(properties = "spring.datasource.url=jdbc:h2:mem:property-initialization-${random.uuid}")
 class InitialPropertyDataLoaderTests {
 
@@ -28,4 +26,3 @@ class InitialPropertyDataLoaderTests {
     }
     
 }
-*/
