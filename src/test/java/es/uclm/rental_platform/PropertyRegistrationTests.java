@@ -1,17 +1,17 @@
-/*
 package es.uclm.rental_platform;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.test.web.servlet.MockMvc;
 
 import es.uclm.rental_platform.repository.PropertyRepository;
@@ -32,11 +32,16 @@ class PropertyRegistrationTests {
     }
 
     @Test
-    void validPropertyIsPersisted() throws Exception {
+    void shouldCreatePropertyWhenDataIsValid() throws Exception {
+        // Arrange
+        String title = "Casa rural";
+        String address = "Calle Mayor 10, Toledo";
+
+        // Act
         mockMvc.perform(post("/properties")
-                .param("title", "Casa rural")
+                .param("title", title)
                 .param("description", "Casa junto al parque")
-                .param("address", "Calle Mayor 10, Toledo")
+                .param("address", address)
                 .param("city", "Toledo")
                 .param("pricePerNight", "85.50")
                 .param("amenities", "Wi-Fi, cocina")
@@ -45,16 +50,23 @@ class PropertyRegistrationTests {
             .andExpect(status().is3xxRedirection())
             .andExpect(redirectedUrl("/properties/new?created=true"));
 
-        org.assertj.core.api.Assertions.assertThat(propertyRepository.count()).isEqualTo(1);
-        var property = propertyRepository.findAll().get(0);
-        org.assertj.core.api.Assertions.assertThat(property.getTitle()).isEqualTo("Casa rural");
-        org.assertj.core.api.Assertions.assertThat(property.getAddress()).isEqualTo("Calle Mayor 10, Toledo");
-        org.assertj.core.api.Assertions.assertThat(property.getCity()).isEqualTo("Toledo");
-        org.assertj.core.api.Assertions.assertThat(property.isInstantBooking()).isTrue();
+        // Assert
+        assertThat(propertyRepository.findAll())
+                .singleElement()
+                .satisfies(property -> {
+                    assertThat(property.getTitle()).isEqualTo(title);
+                    assertThat(property.getAddress()).isEqualTo(address);
+                    assertThat(property.getCity()).isEqualTo("Toledo");
+                    assertThat(property.isInstantBooking()).isTrue();
+                });
     }
 
     @Test
-    void blankFieldsDoNotCreateProperty() throws Exception {
+    void shouldRejectPropertyWhenDataIsInvalid() throws Exception {
+        // Arrange
+        long propertyCountBeforeRequest = propertyRepository.count();
+
+        // Act
         mockMvc.perform(post("/properties"))
             .andExpect(status().isOk())
             .andExpect(view().name("property-form"))
@@ -62,7 +74,7 @@ class PropertyRegistrationTests {
                     "propertyForm", "title", "description", "address", "city", "pricePerNight", "amenities",
                     "type", "instantBooking"));
 
-        org.assertj.core.api.Assertions.assertThat(propertyRepository.count()).isZero();
+        // Assert
+        assertThat(propertyRepository.count()).isEqualTo(propertyCountBeforeRequest);
     }
 }
-*/
