@@ -24,12 +24,13 @@
 
 
 
+
 **Equipo / empresa:**  Groundbnb
 **Repositorio:** github.com/NCVN06/Groundbnb
-**Versión del documento:** 0.3  
-**Responsable de mantener el plan:** Pedro Jesús de los Reyes Cabañas
+**Versión del documento:** 0.4  
+**Responsable de mantener el plan:** Pedro Jesús
 **Sprint / iteración actual:** 6  
-**Última actualización:** 16/11/2026
+**Última actualización:** 17/11/2026
 
 
 ---
@@ -66,8 +67,6 @@ Funcionalidades modificadas o susceptibles de regresión.
 
 | Tipo | Cuándo se utiliza | Ejemplos en el proyecto |
 
-|---|---|---|
-
 | Unitaria | Para comprobar una clase, método o regla de negocio de forma aislada | FP-01 |
 
 | Integración | Para comprobar la colaboración entre varios componentes o con persistencia | FP-02 |
@@ -94,11 +93,9 @@ Funcionalidades modificadas o susceptibles de regresión.
 
 | ID | Funcionalidad / comportamiento | Issue o requisito relacionado | Motivo de prioridad | Estado de pruebas |
 
-|---|---|---|---|---|
+| FP-01 | Alta de prioridades propiedades  | 13 | Comprobar la funcionalidad básica de creación de propiedades | Cubierto |
 
-| FP-01 | Alta de prioridades propiedades  | 13 | Comprobar la funcionalidad básica de creación de propiedades | Pendiente  |
-
-| FP-02 | Buscar propiedades | 11 | Comprobar la recuperación de informacióncon mediante la funcionalidad de búsqueda | Pendiente  |
+| FP-02 | Buscar propiedades | 11 | Comprobar la recuperación de informacióncon mediante la funcionalidad de búsqueda | Cubierto  |
 
 
 
@@ -116,13 +113,12 @@ Funcionalidades modificadas o susceptibles de regresión.
 
 | ID | Funcionalidad | Criterio protegido | Tipo de caso | Entrada / situación | Resultado esperado | Prioridad |
 
-|---|---|---|---|---|---|---|
+| CP-01 | FP-01 | Deben tener un nombre, una descripción, su dirección, el precio por noche y las comodidades que ofrece. | Válido | Rellenamos los campos con valores validos para crear una propiedad  | Se crea la propiedad | Alta |
 
-| CP-01 | FP-01 |  | Válido | Rellenamos los campos con valores validos para crear una propiedad  | Se crea la propiedd | Alta |
+| CP-02 | FP-01 | Deben tener un nombre, una descripción, su dirección, el precio por noche y las comodidades que ofrece | Inválido | Rellenamos los campos con valores incorrectos al crear la vivienda | El sistema informa que los datos introducidos no son correctos | Media |
 
-| CP-02 | FP-01 |  | Inválido | Rellenamos los campos con valores incorrectos al crear la vivienda | El sistema informa que los dtos introducidos no son correctos | Media |
-
-| CP-03 | FP-02 |  | Valido | Introducimos los datos de una propiedad que existe en la base de datos | Se recupera la información de la propiedad | Alta |
+| CP-03 | FP-02 | El sistema debe devolver y mostrar el listado de propiedades resultantes que coincidan con la búsqueda
+ | Valido | Introducimos los datos de una propiedad que existe en la base de datos | Se recupera la información de la propiedad | Alta |
 
 
 
@@ -154,12 +150,7 @@ Funcionalidades modificadas o susceptibles de regresión.
 
 | Dato / condición | Partición válida | Partición inválida | Casos asociados |
 
-|---|---|---|---|
-
-|  |  |  |  |
-
-|  |  |  |  |
-
+| Precio por noche | 85.50 | 0.00 | CP-01  | 
 
 
 ### Valores límite
@@ -168,11 +159,8 @@ Funcionalidades modificadas o susceptibles de regresión.
 
 | Dato / condición | Valores límite relevantes | Comportamiento esperado | Casos asociados |
 
-|---|---|---|---|
+| Precio por noche | 0.01 | Se acepta el valor introducido | CP-01 |
 
-|  |  |  |  |
-
-|  |  |  |  |
 
 
 
@@ -190,7 +178,6 @@ Funcionalidades modificadas o susceptibles de regresión.
 
 | ID caso | Clase / método JUnit | Tipo | Comportamiento protegido | Estado |
 
-|---|---|---|---|---|
 
 | CP-01 | `PropertyRegistrationTests.shouldCreatePropertyWhenDataIsValid` | Integración / Web | Registra y persiste una propiedad con datos válidos | Implementada |
 
@@ -234,16 +221,15 @@ ser repetibles desde Maven.
 
 
 
-[ ] Las pruebas están relacionadas con requisitos, criterios o comportamientos relevantes.
-[ ] Existen casos válidos, inválidos y límite cuando corresponda.
-[ ] Las aserciones comprueban resultados significativos.
-[ ] Las pruebas pueden fallar ante defectos reales relacionados con el comportamiento protegido.
-[ ] No existen pruebas vacías o que siempre pasen.
-[ ] No se mezclan demasiados objetivos no relacionados en una misma prueba.
-[ ] Se han detectado y corregido pruebas frágiles cuando ha sido necesario.
-[ ] El equipo comprende qué protege cada prueba relevante.
-[ ] Las pruebas pueden ejecutarse de forma reproducible con Maven.
-
+[x] Las pruebas están relacionadas con requisitos, criterios o comportamientos relevantes.
+[x] Existen casos válidos, inválidos y límite cuando corresponda.
+[x] Las aserciones comprueban resultados significativos.
+[x] Las pruebas pueden fallar ante defectos reales relacionados con el comportamiento protegido.
+[X] No existen pruebas vacías o que siempre pasen.
+[X] No se mezclan demasiados objetivos no relacionados en una misma prueba.
+[X] Se han detectado y corregido pruebas frágiles cuando ha sido necesario.
+[X] El equipo comprende qué protege cada prueba relevante.
+[X] Las pruebas pueden ejecutarse de forma reproducible con Maven.
 
 ### Pruebas frágiles, débiles o poco significativas detectadas
 
@@ -329,20 +315,19 @@ ser repetibles desde Maven.
 
 
 
-[ ] El conjunto de pruebas puede ejecutarse desde Maven.
-[ ] El build completo finaliza correctamente.
-[ ] Los fallos existentes están identificados y documentados.
-[ ] No existen pruebas deshabilitadas o eliminadas únicamente para obtener un build verde.
+[X] El conjunto de pruebas puede ejecutarse desde Maven.
+[X] El build completo finaliza correctamente.
+[X] Los fallos existentes están identificados y documentados.
+[X] No existen pruebas deshabilitadas o eliminadas únicamente para obtener un build verde.
 
 
 ### Última ejecución
 
 
 
-**Fecha:**  
-**Resultado:**  
-**Incidencias:**  
-
+**Fecha:** 17-11-2026  
+**Resultado:**  BUID SUCCESS
+**Incidencias:**  Ninguna
 
 ---
 
