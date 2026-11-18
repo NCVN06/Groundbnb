@@ -66,6 +66,20 @@ Durante este periodo no se avanzó en el desarrollo del proyecto.
 - Eliminar ramas en desuso.
 - Actualizar backlog cambiando el formato y añadiendo issues.
 
+### Sprint 6
+12/11/2026 - 18/11/2026
+
+- Solucionar errores de pruebas al integrarlas con otras.
+- Actualizar backlog.
+- Avanzar HITO_2.md.
+- Avanzar TEST_PLAN.md.
+- Impelementar Jacoco.
+
+### Sprint 7
+19/11/2026 - 01/12/2026
+
+Por determinar.
+
 ## Funcionalidad candidata para el hito 1
 
 **Dar de alta propiedades**
