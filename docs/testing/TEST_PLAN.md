@@ -27,10 +27,10 @@
 
 **Equipo / empresa:**  Groundbnb
 **Repositorio:** github.com/NCVN06/Groundbnb
-**Versión del documento:** 0.4  
+**Versión del documento:** 0.5  
 **Responsable de mantener el plan:** Pedro Jesús
-**Sprint / iteración actual:** 6  
-**Última actualización:** 17/11/2026
+**Sprint / iteración actual:** 7  
+**Última actualización:** 18/11/2026
 
 
 ---
@@ -95,7 +95,10 @@ Funcionalidades modificadas o susceptibles de regresión.
 
 | FP-01 | Alta de prioridades propiedades  | 13 | Comprobar la funcionalidad básica de creación de propiedades | Cubierto |
 
-| FP-02 | Buscar propiedades | 11 | Comprobar la recuperación de informacióncon mediante la funcionalidad de búsqueda | Cubierto  |
+| FP-02 | Buscar propiedades | 11 | Comprobar la recuperación de información con mediante la funcionalidad de búsqueda | Cubierto  |
+
+| FP-03 | Inicializar programa con datos cargados | 35 | Comprobar que la web muestre las propiedades | Cubierto  |
+
 
 
 
@@ -113,12 +116,27 @@ Funcionalidades modificadas o susceptibles de regresión.
 
 | ID | Funcionalidad | Criterio protegido | Tipo de caso | Entrada / situación | Resultado esperado | Prioridad |
 
-| CP-01 | FP-01 | Deben tener un nombre, una descripción, su dirección, el precio por noche y las comodidades que ofrece. | Válido | Rellenamos los campos con valores validos para crear una propiedad  | Se crea la propiedad | Alta |
+| CP-01 | FP-01 | Las propiedades deben tener un nombre, una descripción, su dirección, el precio por noche y las comodidades que ofrece. | Válido | Rellenamos los campos con valores validos para crear una propiedad  | Se crea la propiedad | Alta |
 
-| CP-02 | FP-01 | Deben tener un nombre, una descripción, su dirección, el precio por noche y las comodidades que ofrece | Inválido | Rellenamos los campos con valores incorrectos al crear la vivienda | El sistema informa que los datos introducidos no son correctos | Media |
+| CP-02 | FP-01 | Deben tener un nombre, una descripción, su dirección, el precio por noche y las comodidades que ofrece | Inválido | Rellenamos los campos con valores incorrectos al crear la vivienda | El sistema informa que los datos introducidos no son correctos | Alta |
 
 | CP-03 | FP-02 | El sistema debe devolver y mostrar el listado de propiedades resultantes que coincidan con la búsqueda
  | Valido | Introducimos los datos de una propiedad que existe en la base de datos | Se recupera la información de la propiedad | Alta |
+
+| CP-04 | FP-03 | El sistema debe mostrar al menos cinco propiedades en la pestaña de inicio de la aplicción
+ | Regresión | Hay datos cargados en la base de datos | Se recupera la información | Baja |
+ 
+| CP-05 | FP-01 | Las propiedades deben tener un precio por noche
+ | Valido | Introducimos un valor valido en el campo de precio por noche | Se crea la propiedad | Alta |
+
+| CP-06 | FP-01 | Las propiedades deben tener un precio por noche
+ | Limite | Introducimos un valor limite en el campo de precio por noche | Se crea la propiedad | Media |
+
+| CP-07 | FP-01 | Las propiedades deben tener un precio por noche
+ | Invalido | Introducimos un valor invalido en el campo de precio por noche | No se crea la propiedad | Alta |
+
+| CP-08 | FP-01 | Las propiedades pueden tener de manera opcional una dirección extendida 
+ | Valido | Introducimos los datos en los campos opcionales de dirección | Se crea la propiedad | Media |
 
 
 
@@ -150,7 +168,7 @@ Funcionalidades modificadas o susceptibles de regresión.
 
 | Dato / condición | Partición válida | Partición inválida | Casos asociados |
 
-| Precio por noche | 85.50 | 0.00 | CP-01  | 
+| Precio por noche | 50.00 | 0.00 | CP-05  | 
 
 
 ### Valores límite
@@ -159,7 +177,7 @@ Funcionalidades modificadas o susceptibles de regresión.
 
 | Dato / condición | Valores límite relevantes | Comportamiento esperado | Casos asociados |
 
-| Precio por noche | 0.01 | Se acepta el valor introducido | CP-01 |
+| Precio por noche | 0.01 | Se acepta el valor introducido | CP-06 |
 
 
 
@@ -179,11 +197,21 @@ Funcionalidades modificadas o susceptibles de regresión.
 | ID caso | Clase / método JUnit | Tipo | Comportamiento protegido | Estado |
 
 
-| CP-01 | `PropertyRegistrationTests.shouldCreatePropertyWhenDataIsValid` | Integración / Web | Registra y persiste una propiedad con datos válidos | Implementada |
+| CP-01 | `PropertyRegistrationTests.shouldCreatePropertyWhenDataIsValid` | Integración | Registra y persiste una propiedad con datos válidos | Implementada |
 
-| CP-02 | `PropertyRegistrationTests.shouldRejectPropertyWhenDataIsInvalid` | Integración / Web | Rechaza un formulario incompleto y no crea una propiedad | Implementada |
+| CP-02 | `PropertyRegistrationTests.shouldRejectPropertyWhenDataIsInvalid` | Integración | Rechaza un formulario incompleto y no crea una propiedad | Implementada |
 
 | CP-03 | `PropertySearchTests.shouldReturnPropertyWhenExists` | Integración / Web | Recupera la propiedad coincidente y excluye propiedades que no coinciden | Implementada |
+
+| CP-04 | `InitialPropertyDataLoaderTests.loadsAtLeastFivePropertiesOnStartup` | Web | Muestra el catalogo de ejemplo en la web | Implementada |
+
+| CP-05 | `PropertyPricePerNight.shouldAcceptPricePerNightWhenDataIsValid` | Unitaria | Registra una propiedad con un valor valido | Implementada |
+
+| CP-06 | `PropertyPricePerNight.shouldAcceptPricePerNightWhenDataIsLimitValue` | Unitaria | Registra una propiedad con un valor límite | Implementada |
+
+| CP-07 | `PropertyPricePerNight.shouldRejectPricePerNightWhenDataIsInvalid` | Unitaria | Introduce un valor invalido en precio por noche |
+
+| CP-08 | `PropertyAddresTest.shouldReturnPropertyWhenExists` | Integración | Registra una propiedad con una dirección extendida | Implementada |
 
 
 
@@ -237,11 +265,9 @@ ser repetibles desde Maven.
 
 | Prueba | Problema detectado | Decisión | Estado |
 
-|---|---|---|---|
+| CP-01 | No puede comprobr valores límite ni negativos  | Dividir | Resuelto |
 
-|  |  | Modificar / Dividir / Eliminar / Mantener justificada | Pendiente / Resuelto |
-
-|  |  |  |  |
+| CP-01 | No comprueba los parametros opcionales | Dividir | Resuelto |
 
 
 
@@ -325,7 +351,7 @@ ser repetibles desde Maven.
 
 
 
-**Fecha:** 17-11-2026  
+**Fecha:** 18-11-2026  
 **Resultado:**  BUID SUCCESS
 **Incidencias:**  Ninguna
 
