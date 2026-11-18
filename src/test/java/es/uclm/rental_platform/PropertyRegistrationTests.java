@@ -35,14 +35,18 @@ class PropertyRegistrationTests {
     void shouldCreatePropertyWhenDataIsValid() throws Exception {
         // Arrange
         String title = "Casa rural";
-        String address = "Calle Mayor 10, Toledo";
+        String address = "Calle Mayor, s/n, C.P. 45001, Toledo";
 
         // Act
         mockMvc.perform(post("/properties")
                 .param("title", title)
                 .param("description", "Casa junto al parque")
-                .param("address", address)
+                .param("streetType", "Calle")
+                .param("streetName", "Mayor")
+                .param("number", "s/n")
+                .param("postalCode", "45001")
                 .param("city", "Toledo")
+                .param("province", "Toledo")
                 .param("pricePerNight", "85.50")
                 .param("amenities", "Wi-Fi, cocina")
                 .param("type", "HOME")
@@ -71,7 +75,7 @@ class PropertyRegistrationTests {
             .andExpect(status().isOk())
             .andExpect(view().name("property-form"))
             .andExpect(model().attributeHasFieldErrors(
-                    "propertyForm", "title", "description", "address", "city", "pricePerNight", "amenities",
+                    "propertyForm", "title", "description", "city", "pricePerNight", "amenities",
                     "type", "instantBooking"));
 
         // Assert
