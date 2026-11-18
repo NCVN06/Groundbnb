@@ -40,3 +40,4 @@ Al iniciar la aplicación se cargan cinco propiedades de ejemplo si la base de d
 **Plugins**
 
 - spring-boot-maven-plugin -> permite utilizar las funcionalidades que ofrece maven (clean/test/package/verify/spring-boot:run ...) y añadir al JAR las dependencias del proyecto.
+- jacoco-maven-plugin -> analiza la cobertura en las pruebas del proyecto. Genera un archivo HTML con los resultados .
