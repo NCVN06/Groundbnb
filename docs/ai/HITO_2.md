@@ -10,13 +10,13 @@
 
 ## 1. Identificación
 
-- **Equipo / empresa:**  
-- **Integrantes:**  
-- **Repositorio:**  
-- **Issue / requisito relacionado:**  
-- **Criterio o comportamiento protegido:**  
-- **Responsable principal del Hito 2:**  
-- **Participantes y contribución de cada uno:**  
+- **Equipo / empresa:Groundbnb** 
+- **Integrantes: Ángel Leonardo Curiel Cañizalez, Pablo Dalda Sánchez, Pedro Jesús de los Reyes Cabañas, Nuria Sanhonorato Ruiz y Nicolás Carlos Vladila Nastasoiu.** 
+- **Repositorio: https://github.com/NCVN06/Groundbnb**  
+- **Issue / requisito relacionado: Issue #13 — Alta de propiedades. Caso CP-02 del plan de pruebas**  
+- **Criterio o comportamiento protegido: Un formulario de alta incompleto debe rechazarse mostrando errores de validación y sin persistir una nueva propiedad.**  
+- **Responsable principal del Hito 2:Nuria Sanhonorato**  
+- **Participantes y contribución de cada uno: (PENDIENTE) Ángel Leonardo Curiel Cañizalez: tests, Pablo Dalda Sánchez: creación del test PropertyAddressTests.java, Pedro Jesús de los Reyes Cabañas: Documentación, Nuria Sanhonorato Ruiz : Documentación , Nicolás Carlos Vladila Nastasoiu: Documentación**  
 
 ---
 
@@ -24,12 +24,12 @@
 
 > Completar antes de pedir al agente una propuesta de prueba.
 
-- **Caso relacionado de `docs/testing/TEST_PLAN.md`, si procede:**  
-- **Entrada / situación:**  
-- **Resultado esperado:**  
-- **Tipo de caso:** Válido / Inválido / Límite / Regresión  
-- **Qué defecto debería detectar una buena prueba:**  
-- **Qué aserción o resultado observable debería comprobar:**  
+- **Caso relacionado de `docs/testing/TEST_PLAN.md`, si procede:** CP-02 — Alta de propiedades con datos inválidos 
+- **Entrada / situación:** Enviar una petición POST a `/properties` con el formulario vacío, sin proporcionar los campos obligatorios. 
+- **Resultado esperado:** El servidor devuelve la vista `property-form`, informa de errores de validación en los campos obligatorios y no aumenta el número de propiedades almacenadas.
+- **Tipo de caso:** Inválido  
+- **Qué defecto debería detectar una buena prueba:** Que el sistema acepte un registro incompleto, omita validaciones obligatorias o persista una propiedad pese a haber rechazado el formulario. 
+- **Qué aserción o resultado observable debería comprobar:** Respuesta HTTP 200 y vista `property-form`; errores asociados a `propertyForm` en los campos obligatorios; mismo número de propiedades en el repositorio antes y después de la petición.
 
 ### Contexto proporcionado al agente
 
@@ -45,7 +45,18 @@
 **Prompt principal:**
 
 ```text
-[Incluir el prompt utilizado o una versión resumida fiel.]
+Revisa AGENTS.md, la issue #13, docs/testing/TEST_PLAN.md,
+PropertyRegistrationTests.java y el código de producción relacionado.
+
+El equipo ha seleccionado CP-02: rechazar un formulario de alta
+incompleto sin crear una propiedad.
+
+Propón una prueba JUnit de integración/web que proteja ese criterio.
+Identifica datos de entrada, resultado esperado, aserciones y el
+posible defecto que detectaría. Analiza si el test existente es
+suficiente y si conviene complementarlo con un caso inválido concreto.
+
+No modifiques archivos. Espera aprobación humana.
 ```
 
 ---
@@ -54,20 +65,67 @@
 
 ### Prueba propuesta
 
-- **Clase / método:**  
-- **Datos de prueba:**  
-- **Aserciones:**  
-- **Qué pretende comprobar:**  
-- **Tipo de prueba:** Unitaria / Integración / Web / Otra  
+- **Clase / método:** `PropertyRegistrationTests.shouldRejectIncompletePropertyWhenTitleIsBlank()` (método nuevo propuesto, **no implementado todavía**).  
+- **Datos de prueba:**  petición POST a `/properties` con `title = " "` (solo un espacio); `description = "Casa junto al parque"`, `streetType = "Calle"`, `streetName = "Mayor"`, `number = "10"`, `postalCode = "45001"`, `city = "Toledo"`, `province = "Toledo"`, `pricePerNight = "85.50"`, `amenities = "Wi-Fi, cocina"`, `type = "HOME"` e `instantBooking = "true"`.
+- **Aserciones:** respuesta HTTP 200 (`status().isOk()`), vista `property-form`, error de validación específico `model().attributeHasFieldErrors("propertyForm", "title")` y `propertyRepository.count()` sin cambios respecto al valor anterior a la petición.
+- **Qué pretende comprobar:** que un título obligatorio formado solo por espacios se rechaza aunque los demás datos sean válidos, y que la propiedad no se persiste.
+- **Tipo de prueba:** integración / web, caso inválido aislado, vinculado al CP-02 y a la issue #13.
+
+**Código propuesto por la IA (sin aplicar todavía):**
+
+```java
+@Test
+void shouldRejectIncompletePropertyWhenTitleIsBlank() throws Exception {
+    // Arrange
+    long propertyCountBeforeRequest = propertyRepository.count();
+
+    // Act + Assert web
+    mockMvc.perform(post("/properties")
+            .param("title", " ")
+            .param("description", "Casa junto al parque")
+            .param("streetType", "Calle")
+            .param("streetName", "Mayor")
+            .param("number", "10")
+            .param("postalCode", "45001")
+            .param("city", "Toledo")
+            .param("province", "Toledo")
+            .param("pricePerNight", "85.50")
+            .param("amenities", "Wi-Fi, cocina")
+            .param("type", "HOME")
+            .param("instantBooking", "true"))
+        .andExpect(status().isOk())
+        .andExpect(view().name("property-form"))
+        .andExpect(model().attributeHasFieldErrors("propertyForm", "title"));
+
+    // Assert persistence
+    assertThat(propertyRepository.count())
+        .isEqualTo(propertyCountBeforeRequest);
+}
+```
+
+### Resultado de la inspección y ejecución inicial realizada por la IA
+
+El agente informó de que la issue #13 exige impedir el alta si faltan campos obligatorios. Señaló que `PropertyForm.java` contiene las restricciones y que `PropertyController.java` interrumpe el flujo antes de crear la propiedad cuando existen errores de validación.
+
+El agente ejecutó `./mvnw.cmd -Dtest=PropertyRegistrationTests test` (en Windows: `.\mvnw.cmd -Dtest=PropertyRegistrationTests test`) y comunicó **`BUILD FAILURE`**, con dos fallos relacionados con el formulario antiguo:
+
+1. `shouldRejectPropertyWhenDataIsInvalid`: espera un error en `address`, campo que ya no existe como tal en el formulario actual.
+2. `shouldCreatePropertyWhenDataIsValid`: envía el parámetro antiguo `address`; por ello recibe HTTP 200 en lugar de la redirección esperada.
+
+Según el agente, `PropertyAddressTests.requiredAddressComponentsAreValidatedBeforePersisting` ya comprueba un caso inválido de `streetName` vacío, pero no sustituye una comprobación específica del título para CP-02.
+
+**Alcance de esta evidencia:** resultado comunicado por el agente en la conversación; 
+
+**PENDIENTE** adjuntar captura o informe Surefire de la ejecución. Este fallo por desactualización **no es** la demostración de defecto deliberado verde → rojo → verde.
+
 
 ### Valoración inicial del equipo
 
-- **¿Protege realmente el criterio seleccionado?:** Sí / No / Parcial  
-- **¿Los datos de entrada son adecuados?:** Sí / No / Parcial  
-- **¿Las aserciones son significativas?:** Sí / No / Parcial  
-- **¿Incluye los casos límite relevantes?:** Sí / No / No aplica  
-- **¿Podría pasar aunque exista un defecto importante?:** Sí / No  
-
+- **¿Protege realmente el criterio seleccionado?:** **Sí, de forma específica**, porque comprueba un campo obligatorio y la ausencia de persistencia.
+- **¿Los datos de entrada son adecuados?:** **Sí, en principio**; los demás campos se presentan como válidos. Confirmar con ejecución real que no generan otros errores. 
+- **¿Las aserciones son significativas?:** **Sí**; cubren respuesta, vista, error del campo y persistencia.  
+- **¿Incluye los casos límite relevantes?:** **Parcial**; prueba título con solo espacios, pero no cubre todas las variantes inválidas ni todos los campos.  
+- **¿Podría pasar aunque exista un defecto importante?:** **Sí**; una validación defectuosa de otro campo podría quedar sin detectar, por lo que se conserva el resto del conjunto de pruebas.  
 ---
 
 ## 4. Revisión humana y mejora
